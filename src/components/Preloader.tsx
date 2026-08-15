@@ -38,7 +38,7 @@ export default function Preloader() {
       {!done && (
         <motion.div
           className="fixed inset-0 z-[300] flex flex-col items-center justify-center bg-[#F0F5FF]"
-          exit={{ y: '-100%', transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] } }}
+          exit={{ x: '100%', transition: { duration: 0.6, ease: [0.76, 0, 0.24, 1] } }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <motion.img
@@ -59,11 +59,6 @@ export default function Preloader() {
           >
             Built for brands. Ready for agents.
           </motion.p>
-
-          <div className="absolute bottom-10 right-10 flex items-baseline gap-1 font-mono text-sm text-[#4A82C4]">
-            <span className="text-5xl font-medium tabular-nums">{count}</span>
-            <span className="text-[#5A6B82]">%</span>
-          </div>
 
           <motion.div
             className="absolute bottom-0 left-0 h-[3px] bg-[#7BB8E8]"
