@@ -1,30 +1,28 @@
 'use client'
 
 const clients = [
-  'Acme Corp',
-  'Nova Labs',
-  'Meridian',
-  'Apex Digital',
-  'Forge Studio',
-  'Northwind',
-  'Brightpath',
-  'Cobalt & Co',
+  { name: 'Salt XC', src: '/logos/salt-xc.png' },
+  { name: 'OpsGuru', src: '/logos/opsguru-logo.png' },
+  { name: 'The Arden', src: '/logos/arden.png' },
+  { name: 'Bud Light', src: '/logos/bud-light.png' },
+  { name: 'Tim Hortons', src: '/logos/tim-hortons.png' },
+  { name: 'Adidas SportsCheck', src: '/logos/adidas-sportscheck.png' },
+  { name: 'Budweiser', src: '/logos/budweiser.png' },
+  { name: "Welch's", src: '/logos/welchs.png' },
+  { name: 'GE', src: '/logos/ge.png' },
+  { name: 'Peace Tea', src: '/logos/peace-tea.png' },
+  { name: 'Carbon60', src: '/logos/carbon60.png' },
+  { name: 'Busch', src: '/logos/busch.png' },
+  { name: 'McCain', src: '/logos/mccain.png' },
+  { name: 'Michelob FIFA', src: '/logos/michelob-fifa.png' },
+  { name: "Dick's", src: '/logos/dicks.png' },
+  { name: 'Stella Artois', src: '/logos/stella-artois.png' },
+  { name: 'Roger', src: '/logos/roger.png' },
+  { name: 'HoopTea', src: '/logos/hooptea.png' },
+  { name: 'Adidas Striker Lab', src: '/logos/adidas-striker-lab.jpg' },
+  { name: 'Adidas GA Cup', src: '/logos/adidas-ga-cup.png' },
+  { name: 'Brickworks Ciderhouse', src: '/logos/brickworks-ciderhouse.png' },
 ]
-
-function ClientMark({ name }: { name: string }) {
-  // Minimal geometric monogram mark — clean, professional, no fake logos
-  const initial = name.charAt(0)
-  return (
-    <div className="flex items-center gap-3 opacity-45 hover:opacity-80 transition-opacity duration-300">
-      <span className="w-7 h-7 rounded-md border border-[#1A2332]/30 flex items-center justify-center font-mono text-[12px] font-bold text-[#1A2332]/60">
-        {initial}
-      </span>
-      <span className="text-[15px] font-semibold text-[#1A2332]/70 whitespace-nowrap tracking-tight">
-        {name}
-      </span>
-    </div>
-  )
-}
 
 export default function TrustBar() {
   const doubled = [...clients, ...clients]
@@ -41,9 +39,19 @@ export default function TrustBar() {
           WebkitMaskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
         }}
       >
-        <div className="flex gap-14 items-center w-max animate-marquee">
+        <div className="flex gap-12 items-center w-max animate-marquee">
           {doubled.map((client, i) => (
-            <ClientMark key={`${client}-${i}`} name={client} />
+            <div
+              key={`${client.name}-${i}`}
+              className="flex items-center shrink-0 opacity-45 grayscale transition-opacity duration-300 hover:opacity-100 hover:grayscale-0"
+              title={client.name}
+            >
+              <img
+                src={client.src}
+                alt={client.name}
+                className="h-9 w-auto max-w-[160px] object-contain md:h-11 md:max-w-[180px]"
+              />
+            </div>
           ))}
         </div>
       </div>

@@ -24,7 +24,7 @@ const config: Config = {
         display: ['var(--font-space-grotesk)', 'system-ui', 'sans-serif'],
       },
       animation: {
-        'marquee': 'marquee 28s linear infinite',
+        'marquee': 'marquee 44s linear infinite',
         'float-slow': 'floatSlow 7s ease-in-out infinite',
         'pulse-ring': 'pulseRing 2.6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
         'shimmer': 'shimmer 2.8s linear infinite',
