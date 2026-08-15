@@ -13,6 +13,13 @@
   html {
     scroll-behavior: smooth;
   }
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
   body {
     background-color: #F0F5FF;
     color: #1A2332;
