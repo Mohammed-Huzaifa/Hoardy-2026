@@ -43,7 +43,7 @@ export default function TrustBar() {
           {doubled.map((client, i) => (
             <div
               key={`${client.name}-${i}`}
-              className="flex items-center shrink-0 opacity-45 grayscale transition-opacity duration-300 hover:opacity-100 hover:grayscale-0"
+              className="flex items-center shrink-0"
               title={client.name}
             >
               <img
