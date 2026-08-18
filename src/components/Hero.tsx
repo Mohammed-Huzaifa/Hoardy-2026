@@ -66,7 +66,7 @@ export default function Hero() {
             {/* Subtitle */}
             <p className="text-[17px] sm:text-[18px] text-[#C7D4EA] leading-relaxed max-w-xl mb-10">
               AI assistants. Product development. Web &amp; VR. hoardy.ai ships what moves your
-              business forward — from concept to launch, with quality baked in.
+              business forward, from concept to launch, with quality baked in.
             </p>
 
             {/* CTAs */}

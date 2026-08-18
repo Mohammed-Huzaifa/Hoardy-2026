@@ -13,7 +13,7 @@ const steps = [
     number: '02',
     title: 'Design',
     description:
-      'We translate insight into product — information architecture, wireframes, and a design system your team will actually use.',
+      'We translate insight into product: information architecture, wireframes, and a design system your team will actually use.',
     detail: 'UX flows · Design system · Prototypes',
   },
   {
@@ -27,7 +27,7 @@ const steps = [
     number: '04',
     title: 'Launch & Maintain',
     description:
-      'Production deployment, monitoring setup, and ongoing support. QA is embedded the whole way — not bolted on at the end.',
+      'Production deployment, monitoring setup, and ongoing support. QA is embedded the whole way, not bolted on at the end.',
     detail: 'Deployment · Monitoring · Ongoing QA',
   },
 ]
@@ -55,7 +55,7 @@ export default function Process() {
             From concept to launch, <span className="text-[#7BB8E8]">together</span>
           </h2>
           <p className="mt-5 text-[17px] text-[#C8D6E5] max-w-xl leading-relaxed">
-            A proven workflow that keeps your team in the loop at every stage — because
+            A proven workflow that keeps your team in the loop at every stage, because
             trust is a feature.
           </p>
         </div>

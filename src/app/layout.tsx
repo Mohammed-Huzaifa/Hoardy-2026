@@ -11,9 +11,9 @@ const spaceGrotesk = Space_Grotesk({
 })
 
 export const metadata: Metadata = {
-  title: 'hoardy.ai — Built for brands. Ready for agents.',
+  title: 'hoardy.ai | Built for brands. Ready for agents.',
   description:
-    'AI assistants, product development, web & VR. hoardy.ai ships what moves your business forward — from concept to launch, with quality baked in.',
+    'AI assistants, product development, web & VR. hoardy.ai ships what moves your business forward, from concept to launch, with quality baked in.',
 }
 
 export default function RootLayout({

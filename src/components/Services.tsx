@@ -7,7 +7,7 @@ const services = [
     number: '01',
     title: 'AI Agents & Assistants',
     description:
-      'Custom AI agent setup, LLM integration, and workflow automation that augment your team — not replace it.',
+      'Custom AI agent setup, LLM integration, and workflow automation that augment your team, not replace it.',
     tags: ['LLM integration', 'Workflow automation', 'Intelligent assistants'],
     accent: '#7BB8E8',
     mock: (
@@ -24,7 +24,7 @@ const services = [
           </div>
           <div className="flex items-start gap-2">
             <span className="w-4 h-4 rounded-full bg-gradient-to-br from-[#7BB8E8] to-[#4A82C4] flex items-center justify-center text-[8px] text-white flex-shrink-0 mt-0.5">✦</span>
-            <span className="font-mono text-[9px] text-[#1A2332] bg-white border border-[#C8D6E5]/60 rounded-md px-2 py-1 leading-relaxed">Done — 3 key insights found. Deploying to Slack…</span>
+            <span className="font-mono text-[9px] text-[#1A2332] bg-white border border-[#C8D6E5]/60 rounded-md px-2 py-1 leading-relaxed">Done. 3 key insights found. Deploying to Slack…</span>
           </div>
           <div className="flex gap-1 pl-6">
             <span className="w-1.5 h-1.5 rounded-full bg-[#7BB8E8] animate-bounce" style={{ animationDelay: '0ms' }} />
@@ -368,7 +368,7 @@ export default function Services() {
               Full-stack capability, <span className="text-gradient">from AI to immersive</span>
             </h2>
             <p className="mt-4 text-[16px] text-[#5A6B82] max-w-xl leading-relaxed">
-              Six disciplines, one accountable team. Drag the reel — or use the arrows.
+              Six disciplines, one accountable team. Drag the reel, or use the arrows.
             </p>
           </div>
 

@@ -27,7 +27,7 @@ export default function CTA() {
         </h2>
         <p className="text-[17px] lg:text-[19px] text-[#C8D6E5] mb-12 max-w-xl mx-auto leading-relaxed">
           Tell us what you&apos;re trying to ship. We&apos;ll tell you the fastest way to get it
-          to market — with quality baked in.
+          to market, with quality baked in.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -47,7 +47,7 @@ export default function CTA() {
         </div>
 
         <p className="mt-10 font-mono text-[11px] uppercase tracking-[0.2em] text-[#C8D6E5]/60">
-          Typical response time — within one business day
+          Typical response time: within one business day
         </p>
       </div>
     </section>

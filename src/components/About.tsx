@@ -32,7 +32,7 @@ const differentiators = [
   {
     title: 'Quality as infrastructure',
     description:
-      "QA isn't an afterthought — it's embedded in our process through automated testing and continuous monitoring.",
+      "QA isn't an afterthought; it's embedded in our process through automated testing and continuous monitoring.",
     icon: (
       <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#7BB8E8" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
         <path d="M24 6 L38 12 L38 24 C38 33 31 40 24 42 C17 40 10 33 10 24 L10 12 Z" />
@@ -43,7 +43,7 @@ const differentiators = [
   {
     title: 'Agents, not just apps',
     description:
-      'We design for the agentic era — autonomous workflows and AI assistants that do the work, not demos that impress.',
+      'We design for the agentic era: autonomous workflows and AI assistants that do the work, not demos that impress.',
     icon: (
       <svg width="40" height="40" viewBox="0 0 48 48" fill="none" stroke="#7BB8E8" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
         <circle cx="14" cy="24" r="6" />
