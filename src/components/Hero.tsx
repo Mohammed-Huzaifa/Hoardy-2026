@@ -6,7 +6,7 @@ const TechWorld = dynamic(() => import('./TechWorld'), {
   ssr: false,
   loading: () => (
     <div className="w-full h-full flex items-center justify-center">
-      <div className="w-40 h-40 rounded-full bg-gradient-to-br from-[#7BB8E8]/25 to-[#E2E9F5] animate-pulse" />
+      <div className="w-40 h-40 rounded-full bg-gradient-to-br from-[#7BB8E8]/25 to-[#1B2B5E]/20 animate-pulse" />
     </div>
   ),
 })
@@ -30,20 +30,20 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen bg-[#F0F5FF] pt-32 lg:pt-40 pb-16 lg:pb-24 overflow-hidden"
+      className="relative min-h-screen bg-[#101F45] pt-32 lg:pt-40 pb-16 lg:pb-24 overflow-hidden"
     >
-      {/* Living tech world background — full-bleed 3D scene */}
+      {/* Cinematic living background — full-bleed */}
       <div className="absolute inset-0" aria-hidden="true">
         <TechWorld />
       </div>
 
-      {/* Readability scrims: keep text crisp over the scene */}
+      {/* Readability scrims: keep text crisp over the atmosphere */}
       <div
-        className="hidden lg:block absolute inset-y-0 left-0 w-[58%] bg-gradient-to-r from-[#F0F5FF] via-[#F0F5FF]/80 to-transparent pointer-events-none"
+        className="hidden lg:block absolute inset-y-0 left-0 w-[58%] bg-gradient-to-r from-[#101F45]/95 via-[#101F45]/75 to-transparent pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="lg:hidden absolute inset-x-0 top-0 h-[62%] bg-gradient-to-b from-[#F0F5FF] via-[#F0F5FF]/85 to-transparent pointer-events-none"
+        className="lg:hidden absolute inset-x-0 top-0 h-[62%] bg-gradient-to-b from-[#101F45]/95 via-[#101F45]/80 to-transparent pointer-events-none"
         aria-hidden="true"
       />
 
@@ -51,12 +51,12 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 items-center">
           {/* Left column */}
           <div>
-            {/* Mono label — hand-crafted, not a template pill */}
-            <p className="flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.2em] text-[#4A82C4] mb-8">
+            {/* Mono label */}
+            <p className="flex items-center gap-3 font-mono text-[12px] uppercase tracking-[0.2em] text-[#9FD0F2] mb-8">
               <span className="inline-flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#7BB8E8] animate-pulse" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#4A82C4]/60" />
-                <span className="w-1.5 h-1.5 rounded-full bg-[#1B2B5E]/40" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#4A82C4]/80" />
+                <span className="w-1.5 h-1.5 rounded-full bg-[#EEF2FF]/50" />
               </span>
               Toronto-based tech agency
             </p>
@@ -69,7 +69,7 @@ export default function Hero() {
                     className="word-animate"
                     style={{
                       animationDelay: `${0.15 + i * 0.12}s`,
-                      color: word.highlight ? '#7BB8E8' : '#1A2332',
+                      color: word.highlight ? '#7BB8E8' : '#EEF2FF',
                     }}
                   >
                     {word.text}
@@ -80,7 +80,7 @@ export default function Hero() {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-[17px] sm:text-[18px] text-[#5A6B82] leading-relaxed max-w-xl mb-10">
+            <p className="text-[17px] sm:text-[18px] text-[#C7D4EA] leading-relaxed max-w-xl mb-10">
               AI assistants. Product development. Web &amp; VR. hoardy.ai ships what moves your
               business forward — from concept to launch, with quality baked in.
             </p>
@@ -89,14 +89,14 @@ export default function Hero() {
             <div className="flex flex-col sm:flex-row gap-4 mb-14">
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 bg-[#1B2B5E] text-[#EEF2FF] px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#243A6E] hover:scale-[1.02] transition-all duration-300 shine group"
+                className="inline-flex items-center justify-center gap-2 bg-[#7BB8E8] text-[#101F45] px-8 py-4 rounded-full text-[16px] font-semibold hover:bg-[#9FD0F2] hover:scale-[1.02] transition-all duration-300 shine group"
               >
                 Start a project
                 <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
               </a>
               <a
                 href="#work"
-                className="inline-flex items-center justify-center border border-[#C8D6E5] bg-white/50 text-[#1A2332] px-8 py-4 rounded-full text-[16px] font-semibold hover:border-[#7BB8E8] hover:text-[#7BB8E8] hover:bg-white transition-all duration-300"
+                className="inline-flex items-center justify-center border border-[#4A82C4]/60 bg-white/5 text-[#EEF2FF] px-8 py-4 rounded-full text-[16px] font-semibold hover:border-[#7BB8E8] hover:text-[#9FD0F2] hover:bg-white/10 transition-all duration-300"
               >
                 See our work
               </a>
@@ -105,18 +105,18 @@ export default function Hero() {
             {/* Stats row */}
             <dl className="grid grid-cols-3 gap-6 max-w-md">
               {stats.map((stat, i) => (
-                <div key={stat.label} className={i > 0 ? 'border-l border-[#C8D6E5] pl-6' : ''}>
+                <div key={stat.label} className={i > 0 ? 'border-l border-[#4A82C4]/40 pl-6' : ''}>
                   <dt className="sr-only">{stat.label}</dt>
-                  <dd className="font-mono text-[22px] lg:text-[26px] font-bold text-[#1B2B5E]">
+                  <dd className="font-mono text-[22px] lg:text-[26px] font-bold text-[#9FD0F2]">
                     {stat.value}
                   </dd>
-                  <dd className="text-[12px] text-[#5A6B82] mt-1 leading-snug">{stat.label}</dd>
+                  <dd className="text-[12px] text-[#C7D4EA] mt-1 leading-snug">{stat.label}</dd>
                 </div>
               ))}
             </dl>
           </div>
 
-          {/* Right column — the scene lives full-bleed behind; chip floats here */}
+          {/* Right column — scene lives full-bleed behind; chip floats here */}
           <div className="relative h-[340px] sm:h-[420px] lg:h-[540px]">
             {/* Floating glass chip — bottom */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 glass-card rounded-2xl px-5 py-3.5 animate-float-slow">
@@ -130,12 +130,18 @@ export default function Hero() {
 
         {/* Scroll cue */}
         <div className="hidden lg:flex items-center justify-center mt-6" aria-hidden="true">
-          <div className="flex flex-col items-center gap-2 text-[#5A6B82]/60">
+          <div className="flex flex-col items-center gap-2 text-[#C7D4EA]/70">
             <span className="font-mono text-[10px] uppercase tracking-[0.25em]">Scroll to explore</span>
             <span className="block w-px h-10 bg-gradient-to-b from-[#7BB8E8] to-transparent" />
           </div>
         </div>
       </div>
+
+      {/* Bottom fade back to the light page */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#F0F5FF] pointer-events-none"
+        aria-hidden="true"
+      />
     </section>
   )
 }
