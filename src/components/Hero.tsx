@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic'
 
-const Hero3D = dynamic(() => import('./Hero3D'), {
+const TechWorld = dynamic(() => import('./TechWorld'), {
   ssr: false,
   loading: () => (
     <div className="w-full h-full flex items-center justify-center">
@@ -28,15 +28,22 @@ const stats = [
 
 export default function Hero() {
   return (
-    <section id="top" className="relative min-h-screen bg-[#F0F5FF] pt-32 lg:pt-40 pb-16 lg:pb-24 overflow-hidden">
-      {/* Background: subtle grid + glow orbs */}
-      <div className="absolute inset-0 bg-grid opacity-60" aria-hidden="true" />
+    <section
+      id="top"
+      className="relative min-h-screen bg-[#F0F5FF] pt-32 lg:pt-40 pb-16 lg:pb-24 overflow-hidden"
+    >
+      {/* Living tech world background — full-bleed 3D scene */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <TechWorld />
+      </div>
+
+      {/* Readability scrims: keep text crisp over the scene */}
       <div
-        className="absolute -top-40 -right-40 w-[560px] h-[560px] rounded-full bg-[#7BB8E8]/15 blur-[120px]"
+        className="hidden lg:block absolute inset-y-0 left-0 w-[58%] bg-gradient-to-r from-[#F0F5FF] via-[#F0F5FF]/80 to-transparent pointer-events-none"
         aria-hidden="true"
       />
       <div
-        className="absolute bottom-0 -left-40 w-[480px] h-[480px] rounded-full bg-[#4A82C4]/10 blur-[110px]"
+        className="lg:hidden absolute inset-x-0 top-0 h-[62%] bg-gradient-to-b from-[#F0F5FF] via-[#F0F5FF]/85 to-transparent pointer-events-none"
         aria-hidden="true"
       />
 
@@ -109,17 +116,8 @@ export default function Hero() {
             </dl>
           </div>
 
-          {/* Right column — 3D scene */}
+          {/* Right column — the scene lives full-bleed behind; chip floats here */}
           <div className="relative h-[340px] sm:h-[420px] lg:h-[540px]">
-            {/* Soft gradient ring behind the scene */}
-            <div
-              className="absolute inset-8 rounded-full bg-gradient-to-br from-[#7BB8E8]/20 via-[#F0F5FF] to-[#E2E9F5]/70 blur-2xl"
-              aria-hidden="true"
-            />
-            <div className="absolute inset-0">
-              <Hero3D />
-            </div>
-
             {/* Floating glass chip — bottom */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 glass-card rounded-2xl px-5 py-3.5 animate-float-slow">
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#4A82C4] mb-0.5">
