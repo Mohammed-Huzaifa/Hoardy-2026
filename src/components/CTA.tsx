@@ -5,7 +5,7 @@ export default function CTA() {
   const { ref, inView } = useInView()
 
   return (
-    <section id="contact" className="relative py-28 lg:py-36 bg-[#1B2B5E] overflow-hidden">
+    <section id="contact" className="relative py-28 lg:py-36 bg-[#1B2B5E]/90 backdrop-blur-md overflow-hidden">
       {/* Background: grid + glow orbs */}
       <div className="absolute inset-0 bg-grid-dark" aria-hidden="true" />
       <div

@@ -36,7 +36,7 @@ export default function Process() {
   const { ref, inView } = useInView()
 
   return (
-    <section id="process" className="relative py-24 lg:py-32 bg-[#1B2B5E] overflow-hidden">
+    <section id="process" className="relative py-24 lg:py-32 bg-[#1B2B5E]/90 backdrop-blur-md overflow-hidden">
       {/* Background texture */}
       <div className="absolute inset-0 bg-grid-dark" aria-hidden="true" />
       <div

@@ -60,7 +60,7 @@ export default function About() {
   const { ref, inView } = useInView()
 
   return (
-    <section id="about" className="py-24 lg:py-32 bg-[#F0F5FF]">
+    <section id="about" className="py-24 lg:py-32 bg-[#F0F5FF]/75 backdrop-blur-md">
       <div className="max-w-6xl mx-auto px-6">
         <div ref={ref} className={`reveal ${inView ? 'in-view' : ''} mb-14 lg:mb-20`}>
           <p className="eyebrow mb-4">Why hoardy</p>

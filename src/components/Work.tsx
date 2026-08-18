@@ -67,7 +67,7 @@ export default function Work() {
   }
 
   return (
-    <section id="work" className="py-24 lg:py-32 bg-white">
+    <section id="work" className="py-24 lg:py-32 bg-white/70 backdrop-blur-md">
       <div className="max-w-6xl mx-auto px-6">
         <div ref={ref} className={`reveal ${inView ? 'in-view' : ''} mb-12`}>
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8">

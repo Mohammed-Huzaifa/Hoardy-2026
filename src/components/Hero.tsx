@@ -1,16 +1,5 @@
 'use client'
 
-import dynamic from 'next/dynamic'
-
-const TechWorld = dynamic(() => import('./TechWorld'), {
-  ssr: false,
-  loading: () => (
-    <div className="w-full h-full flex items-center justify-center">
-      <div className="w-40 h-40 rounded-full bg-gradient-to-br from-[#7BB8E8]/25 to-[#1B2B5E]/20 animate-pulse" />
-    </div>
-  ),
-})
-
 const words = [
   { text: 'Built', highlight: true },
   { text: 'for', highlight: false },
@@ -30,13 +19,8 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen bg-[#101F45] pt-32 lg:pt-40 pb-16 lg:pb-24 overflow-hidden"
+      className="relative min-h-screen bg-transparent pt-32 lg:pt-40 pb-16 lg:pb-24 overflow-hidden"
     >
-      {/* Cinematic living background — full-bleed */}
-      <div className="absolute inset-0" aria-hidden="true">
-        <TechWorld />
-      </div>
-
       {/* Readability scrims: keep text crisp over the atmosphere */}
       <div
         className="hidden lg:block absolute inset-y-0 left-0 w-[58%] bg-gradient-to-r from-[#101F45]/95 via-[#101F45]/75 to-transparent pointer-events-none"
@@ -116,7 +100,7 @@ export default function Hero() {
             </dl>
           </div>
 
-          {/* Right column — scene lives full-bleed behind; chip floats here */}
+          {/* Right column — atmosphere lives behind; chip floats here */}
           <div className="relative h-[340px] sm:h-[420px] lg:h-[540px]">
             {/* Floating glass chip — bottom */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 glass-card rounded-2xl px-5 py-3.5 animate-float-slow">
@@ -136,12 +120,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-
-      {/* Bottom fade back to the light page */}
-      <div
-        className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#F0F5FF] pointer-events-none"
-        aria-hidden="true"
-      />
     </section>
   )
 }

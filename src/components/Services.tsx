@@ -352,7 +352,7 @@ export default function Services() {
   }
 
   return (
-    <section id="services" className="py-24 lg:py-32 bg-[#F0F5FF] overflow-hidden">
+    <section id="services" className="py-24 lg:py-32 bg-[#F0F5FF]/75 backdrop-blur-md overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         {/* Heading + controls */}
         <motion.div

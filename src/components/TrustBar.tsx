@@ -28,7 +28,7 @@ export default function TrustBar() {
   const doubled = [...clients, ...clients]
 
   return (
-    <section className="py-12 bg-white border-y border-[#E2E9F5] overflow-hidden" aria-label="Trusted by">
+    <section className="py-12 bg-white/70 backdrop-blur-md border-y border-[#E2E9F5]/70 overflow-hidden" aria-label="Trusted by">
       <p className="text-[12px] font-medium text-[#5A6B82] uppercase tracking-[0.25em] text-center mb-8">
         Trusted by growing teams
       </p>
