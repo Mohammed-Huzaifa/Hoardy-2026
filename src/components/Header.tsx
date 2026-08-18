@@ -39,93 +39,96 @@ export default function Header() {
   }
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-white/85 backdrop-blur-xl border-b border-[#C8D6E5]/60 shadow-[0_8px_32px_rgba(27,43,94,0.07)]'
-          : 'bg-white/55 backdrop-blur-lg border-b border-transparent'
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 h-16 lg:h-[76px] flex items-center justify-between">
-        {/* Logo */}
-        <a href="#top" className="group flex items-center flex-shrink-0" aria-label="hoardyAI home">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/hoardy-logo.png"
-            alt="hoardyAI"
-            width={3859}
-            height={775}
-            className="h-[24px] lg:h-[28px] w-auto transition-transform duration-500 group-hover:scale-[1.04]"
-          />
-        </a>
+    <header className="fixed top-3 lg:top-5 left-0 right-0 z-50 px-4 sm:px-6">
+      {/* Floating pill */}
+      <div
+        className={`mx-auto max-w-5xl rounded-full border transition-all duration-500 backdrop-blur-xl ${
+          scrolled
+            ? 'bg-white/95 border-[#C8D6E5]/70 shadow-[0_8px_32px_rgba(16,31,69,0.18)]'
+            : 'bg-white/90 border-[#C8D6E5]/60 shadow-[0_4px_24px_rgba(16,31,69,0.12)]'
+        }`}
+      >
+        <div className="flex items-center justify-between h-14 lg:h-[64px] px-4 sm:px-6">
+          {/* Logo */}
+          <a href="#top" className="group flex items-center flex-shrink-0" aria-label="hoardyAI home">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/hoardy-logo.png"
+              alt="hoardyAI"
+              width={3859}
+              height={775}
+              className="h-[22px] lg:h-[26px] w-auto transition-transform duration-500 group-hover:scale-[1.04]"
+            />
+          </a>
 
-        {/* Desktop nav — sliding-mask links */}
-        <nav className="hidden lg:flex items-center gap-2" aria-label="Primary">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="group relative flex items-center gap-2 px-4 py-2.5 rounded-full hover:bg-[#1B2B5E]/[0.05] transition-colors duration-300 overflow-hidden"
-            >
-              <span className="font-mono text-[10px] tracking-widest text-[#7BB8E8] transition-colors duration-300">
-                {link.index}
-              </span>
-              {/* Sliding mask: two stacked labels; top slides away, blue ghost slides in */}
-              <span className="relative block h-[18px] overflow-hidden">
-                <span className="block text-[15px] font-medium text-[#1A2332]/85 leading-[18px] transition-all duration-300 group-hover:-translate-y-[18px]">
-                  {link.label}
+          {/* Desktop nav — sliding-mask links */}
+          <nav className="hidden lg:flex items-center gap-1" aria-label="Primary">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="group relative flex items-center gap-2 px-4 py-2 rounded-full hover:bg-[#1B2B5E]/[0.06] transition-colors duration-300 overflow-hidden"
+              >
+                <span className="font-mono text-[10px] tracking-widest text-[#4A82C4] transition-colors duration-300">
+                  {link.index}
                 </span>
-                <span className="absolute inset-0 block text-[15px] font-medium text-[#1B2B5E] leading-[18px] translate-y-[18px] transition-all duration-300 group-hover:translate-y-0">
-                  {link.label}
+                {/* Sliding mask: two stacked labels; top slides away, blue ghost slides in */}
+                <span className="relative block h-[18px] overflow-hidden">
+                  <span className="block text-[15px] font-semibold text-[#1A2332] leading-[18px] transition-all duration-300 group-hover:-translate-y-[18px]">
+                    {link.label}
+                  </span>
+                  <span className="absolute inset-0 block text-[15px] font-semibold text-[#1B2B5E] leading-[18px] translate-y-[18px] transition-all duration-300 group-hover:translate-y-0">
+                    {link.label}
+                  </span>
                 </span>
-              </span>
-            </a>
-          ))}
-        </nav>
+              </a>
+            ))}
+          </nav>
 
-        {/* Desktop CTA — magnetic */}
-        <a
-          ref={ctaRef}
-          href="#contact"
-          onMouseMove={handleCtaMove}
-          onMouseLeave={handleCtaLeave}
-          className="hidden lg:inline-flex items-center gap-1.5 bg-[#1B2B5E] text-[#EEF2FF] px-6 py-2.5 rounded-full text-[14px] font-semibold hover:bg-[#243A6E] transition-colors duration-300 will-change-transform"
-        >
-          Start a project
-          <span aria-hidden="true" className="text-[#7BB8E8]">
-            →
-          </span>
-        </a>
+          {/* Desktop CTA — magnetic */}
+          <a
+            ref={ctaRef}
+            href="#contact"
+            onMouseMove={handleCtaMove}
+            onMouseLeave={handleCtaLeave}
+            className="hidden lg:inline-flex items-center gap-1.5 bg-[#1B2B5E] text-[#EEF2FF] px-6 py-2.5 rounded-full text-[14px] font-semibold hover:bg-[#243A6E] transition-colors duration-300 will-change-transform"
+          >
+            Start a project
+            <span aria-hidden="true" className="text-[#7BB8E8]">
+              →
+            </span>
+          </a>
 
-        {/* Mobile hamburger (only < lg) */}
-        <button
-          className="lg:hidden flex flex-col gap-[5px] p-2 -mr-2 min-h-[44px] min-w-[44px] items-center justify-center"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={mobileOpen}
-        >
-          <span
-            className={`block w-5 h-[2px] rounded-full bg-[#1A2332] transition-all duration-300 ${
-              mobileOpen ? 'rotate-45 translate-y-[7px]' : ''
-            }`}
-          />
-          <span
-            className={`block w-5 h-[2px] rounded-full bg-[#1A2332] transition-all duration-300 ${
-              mobileOpen ? 'opacity-0' : ''
-            }`}
-          />
-          <span
-            className={`block w-5 h-[2px] rounded-full bg-[#1A2332] transition-all duration-300 ${
-              mobileOpen ? '-rotate-45 -translate-y-[7px]' : ''
-            }`}
-          />
-        </button>
+          {/* Mobile hamburger (only < lg) */}
+          <button
+            className="lg:hidden flex flex-col gap-[5px] p-2 -mr-1 min-h-[44px] min-w-[44px] items-center justify-center"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={mobileOpen}
+          >
+            <span
+              className={`block w-5 h-[2px] rounded-full bg-[#1A2332] transition-all duration-300 ${
+                mobileOpen ? 'rotate-45 translate-y-[7px]' : ''
+              }`}
+            />
+            <span
+              className={`block w-5 h-[2px] rounded-full bg-[#1A2332] transition-all duration-300 ${
+                mobileOpen ? 'opacity-0' : ''
+              }`}
+            />
+            <span
+              className={`block w-5 h-[2px] rounded-full bg-[#1A2332] transition-all duration-300 ${
+                mobileOpen ? '-rotate-45 -translate-y-[7px]' : ''
+              }`}
+            />
+          </button>
+        </div>
       </div>
 
-      {/* Mobile drawer */}
+      {/* Mobile drawer — floats below the pill */}
       <div
-        className={`lg:hidden bg-white/90 backdrop-blur-xl border-b border-[#C8D6E5]/60 px-6 overflow-hidden transition-all duration-500 ${
-          mobileOpen ? 'max-h-[480px] py-6' : 'max-h-0 py-0'
+        className={`lg:hidden mx-auto max-w-5xl mt-2 rounded-2xl bg-white/95 backdrop-blur-xl border border-[#C8D6E5]/60 shadow-[0_12px_40px_rgba(16,31,69,0.2)] px-6 overflow-hidden transition-all duration-500 ${
+          mobileOpen ? 'max-h-[480px] py-4' : 'max-h-0 py-0 border-transparent'
         }`}
       >
         <nav className="flex flex-col" aria-label="Mobile">

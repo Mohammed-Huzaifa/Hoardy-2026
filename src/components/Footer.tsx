@@ -58,7 +58,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#14214A]/95 text-[#C8D6E5]">
+    <footer className="relative z-10 bg-[#14214A] text-[#C8D6E5]">
       <div className="max-w-6xl mx-auto px-6 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr] gap-12 lg:gap-8">
           {/* Brand */}
@@ -70,10 +70,10 @@ export default function Footer() {
                 alt="hoardyAI"
                 width={3859}
                 height={775}
-                className="h-[28px] w-auto brightness-0 invert transition-opacity duration-300 group-hover:opacity-80"
+                className="h-[30px] w-auto brightness-0 invert transition-opacity duration-300 group-hover:opacity-80"
               />
             </a>
-            <p className="text-[14px] text-[#C8D6E5]/80 leading-relaxed max-w-xs mb-6">
+            <p className="text-[14px] text-[#D5DFF0] leading-relaxed max-w-xs mb-6">
               Built for brands. Ready for agents. A Toronto-based boutique tech agency
               shipping AI, web, and immersive products.
             </p>
@@ -101,7 +101,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-[14px] text-[#C8D6E5]/80 hover:text-[#EEF2FF] transition-colors duration-200"
+                    className="text-[14px] text-[#D5DFF0] hover:text-[#EEF2FF] transition-colors duration-200"
                   >
                     {link.label}
                   </a>
@@ -120,7 +120,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="text-[14px] text-[#C8D6E5]/80 hover:text-[#EEF2FF] transition-colors duration-200"
+                    className="text-[14px] text-[#D5DFF0] hover:text-[#EEF2FF] transition-colors duration-200"
                   >
                     {link.label}
                   </a>
@@ -134,7 +134,7 @@ export default function Footer() {
             <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#7BB8E8] mb-5">
               Contact
             </h3>
-            <p className="text-[14px] text-[#C8D6E5]/80 leading-relaxed mb-4">
+            <p className="text-[14px] text-[#D5DFF0] leading-relaxed mb-4">
               Toronto, Canada
               <br />
               Working with clients worldwide
@@ -153,11 +153,11 @@ export default function Footer() {
       {/* Bottom bar */}
       <div className="border-t border-white/[0.08]">
         <div className="max-w-6xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-[13px] text-[#C8D6E5]/60">
+          <p className="text-[13px] text-[#C8D6E5]/80">
             © {new Date().getFullYear()} hoardy.ai. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
-            <a href="#" className="text-[13px] text-[#C8D6E5]/60 hover:text-[#EEF2FF] transition-colors duration-200">
+            <a href="#" className="text-[13px] text-[#C8D6E5]/80 hover:text-[#EEF2FF] transition-colors duration-200">
               Privacy Policy
             </a>
             <a href="#" className="text-[13px] text-[#C8D6E5]/60 hover:text-[#EEF2FF] transition-colors duration-200">
