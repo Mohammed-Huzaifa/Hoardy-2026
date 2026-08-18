@@ -25,7 +25,7 @@ export default function TechWorldLayer() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(120% 90% at 50% 35%, rgba(16,31,69,0) 40%, rgba(16,31,69,0.45) 78%, rgba(10,22,50,0.85) 100%)',
+            'radial-gradient(120% 90% at 50% 35%, rgba(16,31,69,0) 55%, rgba(16,31,69,0.25) 85%, rgba(10,22,50,0.6) 100%)',
         }}
       />
     </div>

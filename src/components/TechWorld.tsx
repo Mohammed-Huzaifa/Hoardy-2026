@@ -6,181 +6,133 @@ import { Sparkles } from '@react-three/drei'
 import * as THREE from 'three'
 
 /**
- * TechWorld v6 — "bg video type" cinematic atmosphere, CLEAN edition.
+ * TechWorld v7 — "Aurora Flow" cinematic background.
  *
- * Feedback round 3: v5 was too busy (6 heavy fog blobs, 5 bright rays, 480
- * sparkles, harsh grid). v6 keeps the video feel (constant camera glide,
- * fog depth, light, drifting dust) but restrained: vignette depth, soft
- * grid, 4 gentle fog banks, 3 subtle rays, fine dust particles.
- * "Aesthetic and clean" = layers you notice slowly, not at once.
+ * Founder: "you don't have any other cool and aesthetic 3D bg video? only
+ * this you've got. use your best research tool and get me the best aesthetic
+ * bg for my site."
+ *
+ * Research (Aug 2026): the aesthetic leaders for AI-brand backgrounds are
+ * aurora flow-fields (silky fbm light curtains — OpenAI/Anthropic hero vibe),
+ * KIKK-style particle swarms, and fluid sims. A custom GLSL aurora is the
+ * most premium + cheapest (one shader plane): perpetual silky motion =
+ * "bg video" feel, brand navy/blue palette, zero discrete elements.
+ *
+ * Layers: aurora shader plane (domain-warped fbm, brand ramp, soft vignette)
+ * + fine drifting dust + slow camera glide. v6 grid/rays removed — cleaner.
  */
 
 const LIGHT = '#7BB8E8'
 const GLOW = '#9FD0F2'
 
-function makeGridTexture(): THREE.CanvasTexture {
-  const c = document.createElement('canvas')
-  c.width = 512
-  c.height = 512
-  const g = c.getContext('2d')!
-  g.clearRect(0, 0, 512, 512)
-  g.strokeStyle = 'rgba(123, 184, 232, 0.3)'
-  g.lineWidth = 1.5
-  for (let i = 0; i <= 8; i++) {
-    const p = (i / 8) * 512
-    g.beginPath()
-    g.moveTo(p, 0)
-    g.lineTo(p, 512)
-    g.stroke()
-    g.beginPath()
-    g.moveTo(0, p)
-    g.lineTo(512, p)
-    g.stroke()
+const AURORA_VERT = /* glsl */ `
+varying vec2 vUv;
+void main() {
+  vUv = uv;
+  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+}
+`
+
+const AURORA_FRAG = /* glsl */ `
+uniform float uTime;
+uniform vec2 uRes;
+varying vec2 vUv;
+
+float hash(vec2 p) {
+  return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
+}
+
+float noise(vec2 p) {
+  vec2 i = floor(p);
+  vec2 f = fract(p);
+  f = f * f * (3.0 - 2.0 * f);
+  return mix(
+    mix(hash(i), hash(i + vec2(1.0, 0.0)), f.x),
+    mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), f.x),
+    f.y
+  );
+}
+
+float fbm(vec2 p) {
+  float v = 0.0;
+  float a = 0.5;
+  for (int i = 0; i < 5; i++) {
+    v += a * noise(p);
+    p *= 2.02;
+    a *= 0.5;
   }
-  // section lines glow subtly
-  g.strokeStyle = 'rgba(159, 208, 242, 0.6)'
-  g.lineWidth = 3
-  for (let i = 0; i <= 2; i++) {
-    const p = (i / 2) * 512
-    g.beginPath()
-    g.moveTo(p, 0)
-    g.lineTo(p, 512)
-    g.stroke()
-    g.beginPath()
-    g.moveTo(0, p)
-    g.lineTo(512, p)
-    g.stroke()
-  }
-  const tex = new THREE.CanvasTexture(c)
-  tex.wrapS = THREE.RepeatWrapping
-  tex.wrapT = THREE.RepeatWrapping
-  tex.repeat.set(12, 12)
-  tex.anisotropy = 4
-  return tex
+  return v;
 }
 
-function makeSoftTexture(rgb: string): THREE.CanvasTexture {
-  const c = document.createElement('canvas')
-  c.width = 256
-  c.height = 256
-  const g = c.getContext('2d')!
-  const grad = g.createRadialGradient(128, 128, 10, 128, 128, 128)
-  grad.addColorStop(0, rgb)
-  grad.addColorStop(1, 'rgba(255,255,255,0)')
-  g.fillStyle = grad
-  g.fillRect(0, 0, 256, 256)
-  return new THREE.CanvasTexture(c)
+void main() {
+  float aspect = uRes.x / uRes.y;
+  vec2 p = vec2(vUv.x * aspect, vUv.y);
+  float t = uTime * 0.045;
+
+  // Domain warp — the silky curl
+  vec2 q = vec2(fbm(p + vec2(0.0, t)), fbm(p + vec2(5.2, t * 0.7)));
+  vec2 r = vec2(
+    fbm(p + 2.0 * q + vec2(1.7, 9.2) + t * 0.15),
+    fbm(p + 2.0 * q + vec2(8.3, 2.8) + t * 0.12)
+  );
+  float f = fbm(p + 2.5 * r);
+
+  // Brand ramp: deep navy -> mid blue -> light -> glow
+  vec3 c1 = vec3(0.063, 0.122, 0.271); // #101F45
+  vec3 c2 = vec3(0.106, 0.169, 0.369); // #1B2B5E-ish deep
+  vec3 c3 = vec3(0.290, 0.510, 0.769); // #4A82C4
+  vec3 c4 = vec3(0.482, 0.722, 0.910); // #7BB8E8
+  vec3 c5 = vec3(0.624, 0.816, 0.949); // #9FD0F2
+
+  vec3 col = mix(c1, c2, smoothstep(0.15, 0.55, f));
+  col = mix(col, c3, smoothstep(0.45, 0.85, f));
+  col = mix(col, c4, smoothstep(0.7, 1.05, f * 1.25));
+  col = mix(col, c5, smoothstep(0.95, 1.35, f * 1.5));
+
+  // Soft radial falloff — keeps edges calm and deep
+  float d = length((vUv - 0.5) * vec2(aspect, 1.0));
+  col *= 1.0 - smoothstep(0.65, 1.05, d) * 0.55;
+
+  gl_FragColor = vec4(col, 1.0);
 }
+`
 
-function makeRayTexture(): THREE.CanvasTexture {
-  const c = document.createElement('canvas')
-  c.width = 128
-  c.height = 512
-  const g = c.getContext('2d')!
-  const grad = g.createLinearGradient(0, 0, 0, 512)
-  grad.addColorStop(0, 'rgba(224, 240, 255, 0.8)')
-  grad.addColorStop(0.6, 'rgba(159, 208, 242, 0.28)')
-  grad.addColorStop(1, 'rgba(159, 208, 242, 0)')
-  g.fillStyle = grad
-  g.fillRect(0, 0, 128, 512)
-  return new THREE.CanvasTexture(c)
-}
+/** Aurora — one full-frame shader plane, silky fbm light curtains. */
+function Aurora({ reducedMotion }: { reducedMotion: boolean }) {
+  const matRef = useRef<THREE.ShaderMaterial>(null)
+  const { viewport } = useThree()
+  const uniforms = useMemo(
+    () => ({
+      uTime: { value: 0 },
+      uRes: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+    }),
+    []
+  )
 
-/** Glowing perspective grid floor rushing toward the camera — softer v6. */
-function GridFloor({ reducedMotion }: { reducedMotion: boolean }) {
-  const matRef = useRef<THREE.MeshBasicMaterial>(null)
-  const gridTex = useMemo(() => makeGridTexture(), [])
-
-  useFrame((_, delta) => {
-    if (matRef.current && !reducedMotion) {
-      matRef.current.map!.offset.y -= delta * 0.35
-    }
+  useFrame((state) => {
+    if (!matRef.current || reducedMotion) return
+    matRef.current.uniforms.uTime.value = state.clock.elapsedTime
   })
 
+  // Sized to cover the frustum at z=-3.2, with margin for camera glide
+  const w = viewport.width * 2.2
+  const h = viewport.height * 2.2
+
   return (
-    <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2.6, -1.5]}>
-      <planeGeometry args={[60, 60]} />
-      <meshBasicMaterial ref={matRef} map={gridTex} transparent opacity={0.55} depthWrite={false} />
+    <mesh position={[0, 0, -3.2]}>
+      <planeGeometry args={[w, h]} />
+      <shaderMaterial
+        ref={matRef}
+        vertexShader={AURORA_VERT}
+        fragmentShader={AURORA_FRAG}
+        uniforms={uniforms}
+        depthWrite={false}
+      />
     </mesh>
   )
 }
 
-/** Gentle fog banks — fewer, softer, drifting through depth. */
-function FogLayers({ reducedMotion }: { reducedMotion: boolean }) {
-  const group = useRef<THREE.Group>(null)
-  const texGlow = useMemo(() => makeSoftTexture('rgba(123, 184, 232, 0.35)'), [])
-  const texBlue = useMemo(() => makeSoftTexture('rgba(74, 130, 196, 0.3)'), [])
-  const texWhite = useMemo(() => makeSoftTexture('rgba(224, 240, 255, 0.25)'), [])
-
-  useFrame((state) => {
-    if (!group.current || reducedMotion) return
-    const t = state.clock.elapsedTime
-    group.current.children.forEach((child, i) => {
-      child.position.x += Math.sin(t * 0.1 + i * 2.1) * 0.002
-      child.position.y += Math.cos(t * 0.08 + i * 1.4) * 0.0015
-      child.position.z += Math.sin(t * 0.05 + i) * 0.001
-    })
-  })
-
-  const blobs: {
-    position: [number, number, number]
-    scale: number
-    opacity: number
-    tex: THREE.CanvasTexture
-  }[] = [
-    { position: [-4.5, 0.6, -2.2], scale: 11.0, opacity: 0.45, tex: texGlow },
-    { position: [4.2, -0.4, -1.8], scale: 11.5, opacity: 0.4, tex: texBlue },
-    { position: [1.4, 1.9, -3.2], scale: 12.5, opacity: 0.38, tex: texWhite },
-    { position: [-1.8, -1.2, -0.6], scale: 9.5, opacity: 0.42, tex: texBlue },
-  ]
-
-  return (
-    <group ref={group}>
-      {blobs.map((b, i) => (
-        <mesh key={i} position={b.position} scale={b.scale}>
-          <planeGeometry args={[1, 1]} />
-          <meshBasicMaterial map={b.tex} transparent opacity={b.opacity} depthWrite={false} />
-        </mesh>
-      ))}
-    </group>
-  )
-}
-
-/** God rays — 3 subtle shafts, gentle sway, no harsh breathing. */
-function LightRays({ reducedMotion }: { reducedMotion: boolean }) {
-  const group = useRef<THREE.Group>(null)
-  const rayTex = useMemo(() => makeRayTexture(), [])
-
-  useFrame((state) => {
-    if (!group.current || reducedMotion) return
-    const t = state.clock.elapsedTime
-    group.current.children.forEach((child, i) => {
-      const mesh = child as THREE.Mesh
-      mesh.rotation.z = 0.06 + Math.sin(t * 0.15 + i * 1.9) * 0.04
-      const mat = mesh.material as THREE.MeshBasicMaterial
-      mat.opacity = 0.14 + Math.sin(t * 0.2 + i * 2.4) * 0.04
-    })
-  })
-
-  const rays: { position: [number, number, number]; scale: [number, number, number] }[] = [
-    { position: [-2.6, 2.3, -2.0], scale: [0.5, 6.4, 1] },
-    { position: [0.6, 2.6, -2.6], scale: [0.6, 7.2, 1] },
-    { position: [3.4, 2.1, -1.8], scale: [0.45, 5.8, 1] },
-  ]
-
-  return (
-    <group ref={group}>
-      {rays.map((r, i) => (
-        <mesh key={i} position={r.position} scale={r.scale}>
-          <planeGeometry args={[1, 1]} />
-          <meshBasicMaterial map={rayTex} transparent opacity={0.16} depthWrite={false} />
-        </mesh>
-      ))}
-    </group>
-  )
-}
-
-/** Camera rig — slow, smooth glide + pointer parallax (the video feel, calmed). */
+/** Camera rig — slow, smooth glide + pointer parallax (the video feel). */
 function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
   const target = useRef({ x: 0, y: 0 })
   const { camera } = useThree()
@@ -222,16 +174,12 @@ function Scene() {
 
   return (
     <>
-      <GridFloor reducedMotion={reducedMotion} />
-      <FogLayers reducedMotion={reducedMotion} />
-      <LightRays reducedMotion={reducedMotion} />
-
-      {/* Fine drifting dust — restrained */}
-      <Sparkles count={150} scale={[15, 7, 8]} size={2.6} speed={0.3} opacity={0.5} color={LIGHT} />
-      <Sparkles count={70} scale={[12, 5, 6]} size={2} speed={0.4} opacity={0.4} color={GLOW} />
-      <Sparkles count={40} scale={[10, 3.5, 4.5]} size={1.6} speed={0.5} opacity={0.3} color="#EEF2FF" />
-
+      <Aurora reducedMotion={reducedMotion} />
       <CameraRig reducedMotion={reducedMotion} />
+
+      {/* Fine drifting dust — catches the light like airborne motes */}
+      <Sparkles count={140} scale={[15, 7, 8]} size={2.2} speed={0.3} opacity={0.45} color={GLOW} />
+      <Sparkles count={60} scale={[12, 5, 6]} size={1.7} speed={0.4} opacity={0.35} color={LIGHT} />
     </>
   )
 }
@@ -252,7 +200,6 @@ export default function TechWorld() {
       style={{ background: 'transparent' }}
       aria-hidden="true"
     >
-      <fog attach="fog" args={['#101F45', 6.5, 15]} />
       <Scene />
     </Canvas>
   )
