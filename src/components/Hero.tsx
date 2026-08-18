@@ -100,16 +100,8 @@ export default function Hero() {
             </dl>
           </div>
 
-          {/* Right column — atmosphere lives behind; chip floats here */}
-          <div className="relative h-[340px] sm:h-[420px] lg:h-[540px]">
-            {/* Floating glass chip — bottom */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 glass-card rounded-2xl px-5 py-3.5 animate-float-slow">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#4A82C4] mb-0.5">
-                Currently shipping
-              </p>
-              <p className="text-[14px] font-semibold text-[#1A2332]">AI · Web · VR</p>
-            </div>
-          </div>
+          {/* Right column — atmosphere lives behind */}
+          <div className="relative h-[340px] sm:h-[420px] lg:h-[540px]" aria-hidden="true" />
         </div>
 
         {/* Scroll cue */}
