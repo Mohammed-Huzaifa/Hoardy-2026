@@ -49,7 +49,7 @@ export default function TrustBar() {
               <img
                 src={client.src}
                 alt={client.name}
-                className="h-9 w-auto max-w-[160px] object-contain md:h-11 md:max-w-[180px]"
+                className="h-10 w-auto max-w-[170px] object-contain md:h-12 md:max-w-[200px]"
               />
             </div>
           ))}
