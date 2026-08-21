@@ -144,7 +144,7 @@ export default function Header() {
               }}
               onClick={() => setMobileOpen(false)}
             >
-              <span className="font-mono text-[11px] tracking-widest text-[#7BB8E8]">
+              <span className="font-mono text-[11px] tracking-widest text-[#1B2B5E]">
                 {link.index}
               </span>
               {link.label}

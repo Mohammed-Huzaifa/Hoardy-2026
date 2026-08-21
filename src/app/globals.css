@@ -44,7 +44,7 @@
 @layer components {
   /* Section eyebrow label */
   .eyebrow {
-    @apply font-mono text-[11px] uppercase tracking-[0.3em] text-[#7BB8E8];
+    @apply font-mono text-[11px] uppercase tracking-[0.3em] text-[#1B2B5E];
   }
 
   /* Gradient text */

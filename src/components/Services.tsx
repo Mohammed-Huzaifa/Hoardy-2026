@@ -275,7 +275,7 @@ function ServiceCard({
 
         {/* Number + arrow */}
         <div className="relative flex items-center justify-between mb-5">
-          <span className="font-mono text-[11px] tracking-widest text-[#7BB8E8]">
+          <span className="font-mono text-[11px] tracking-widest text-[#1B2B5E]">
             {service.number}
           </span>
           <span
