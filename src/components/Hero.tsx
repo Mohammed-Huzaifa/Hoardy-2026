@@ -19,7 +19,7 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen bg-transparent pt-32 lg:pt-40 pb-16 lg:pb-24 overflow-hidden"
+      className="relative min-h-0 bg-transparent pt-32 lg:pt-40 pb-16 lg:pb-24 lg:min-h-screen overflow-hidden"
     >
       {/* Readability scrims: keep text crisp over the atmosphere */}
       <div
@@ -100,8 +100,8 @@ export default function Hero() {
             </dl>
           </div>
 
-          {/* Right column — atmosphere lives behind */}
-          <div className="relative h-[340px] sm:h-[420px] lg:h-[540px]" aria-hidden="true" />
+          {/* Right column — atmosphere lives behind (desktop only; mobile/tablet has no spacer gap) */}
+          <div className="hidden lg:block relative h-[540px]" aria-hidden="true" />
         </div>
 
         {/* Scroll cue */}

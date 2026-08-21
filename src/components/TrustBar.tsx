@@ -19,7 +19,7 @@ const clients = [
   { name: 'Stella Artois', src: '/logos/stella-artois.png' },
   { name: 'Roger', src: '/logos/roger.png' },
   { name: 'HoopTea', src: '/logos/hooptea.png' },
-  { name: 'Adidas Striker Lab', src: '/logos/adidas-striker-lab.jpg' },
+  { name: 'Adidas Striker Lab', src: '/logos/adidas-striker-lab.png' },
   { name: 'Adidas GA Cup', src: '/logos/adidas-ga-cup.png' },
   { name: 'Brickworks Ciderhouse', src: '/logos/brickworks-ciderhouse.png' },
 ]
