@@ -1,4 +1,16 @@
 'use client'
+import { useRef } from 'react'
+import { useReducedMotion } from 'motion/react'
+import dynamic from 'next/dynamic'
+
+/* ThreeUI (Meng To's open-source three.js UI library) — CSS-free canvas component */
+const HeroOrb = dynamic(
+  () =>
+    import('@designcodeio/threeui/components/OrbitalSphereBackground').then(
+      (m) => m.OrbitalSphereBackground
+    ),
+  { ssr: false, loading: () => null }
+)
 
 const words = [
   { text: 'Built', highlight: true },
@@ -16,6 +28,23 @@ const stats = [
 ]
 
 export default function Hero() {
+  const orbRef = useRef<HTMLDivElement>(null)
+  const reduced = useReducedMotion()
+
+  // The 3D centerpiece leans toward the cursor (fine pointers only)
+  const onOrbMove = (e: React.MouseEvent) => {
+    const el = orbRef.current
+    if (!el || reduced) return
+    const rect = el.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    el.style.transform = `perspective(1100px) rotateY(${x * 14}deg) rotateX(${y * -10}deg)`
+  }
+  const onOrbLeave = () => {
+    const el = orbRef.current
+    if (el) el.style.transform = 'perspective(1100px) rotateY(0deg) rotateX(0deg)'
+  }
+
   return (
     <section
       id="top"
@@ -100,8 +129,35 @@ export default function Hero() {
             </dl>
           </div>
 
-          {/* Right column — atmosphere lives behind (desktop only; mobile/tablet has no spacer gap) */}
-          <div className="hidden lg:block relative h-[540px]" aria-hidden="true" />
+          {/* Right column — ThreeUI 3D centerpiece (desktop only; mobile has no spacer gap) */}
+          <div
+            className="hidden lg:block relative h-[540px]"
+            aria-hidden="true"
+            onMouseMove={onOrbMove}
+            onMouseLeave={onOrbLeave}
+          >
+            <div
+              ref={orbRef}
+              className="absolute inset-0 flex items-center justify-center will-change-transform transition-transform duration-200 ease-out"
+              style={{ transformStyle: 'preserve-3d' }}
+            >
+              {/* Soft halo behind the sphere */}
+              <div className="absolute w-[440px] h-[440px] rounded-full bg-[#7BB8E8]/10 blur-[110px]" />
+              {!reduced && (
+                <div
+                  className="relative w-[360px] h-[360px]"
+                  style={{ filter: 'saturate(0.85)' }}
+                >
+                  <HeroOrb
+                    hue={-55}
+                    speed={1.15}
+                    scale={1.15}
+                    className="absolute inset-0 h-full w-full pointer-events-none"
+                  />
+                </div>
+              )}
+            </div>
+          </div>
         </div>
 
         {/* Scroll cue */}

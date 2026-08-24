@@ -206,9 +206,11 @@ const services = [
 function ServiceCard({
   service,
   index,
+  active,
 }: {
   service: typeof services[0]
   index: number
+  active: boolean
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const [spot, setSpot] = useState({ x: 50, y: 50, active: false })
@@ -245,7 +247,11 @@ function ServiceCard({
         ref={ref}
         onMouseMove={onMove}
         onMouseLeave={onLeave}
-        className="group relative h-full rounded-3xl border border-[#C8D6E5] bg-white p-6 lg:p-7 transition-transform duration-300 ease-out will-change-transform overflow-hidden"
+        className={`group relative h-full rounded-3xl border bg-white p-6 lg:p-7 transition-all duration-500 ease-out will-change-transform overflow-hidden ${
+          active
+            ? 'border-[#7BB8E8]/60 shadow-[0_28px_70px_rgba(27,43,94,0.16)]'
+            : 'border-[#C8D6E5] opacity-60 saturate-[0.9] hover:opacity-100 hover:saturate-100'
+        }`}
         style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Cursor spotlight */}
@@ -318,6 +324,7 @@ function ServiceCard({
 export default function Services() {
   const trackRef = useRef<HTMLDivElement>(null)
   const [progress, setProgress] = useState(0)
+  const [activeCard, setActiveCard] = useState(0)
   const [canPrev, setCanPrev] = useState(false)
   const [canNext, setCanNext] = useState(true)
 
@@ -329,6 +336,20 @@ export default function Services() {
     setProgress(Math.round(p * 100))
     setCanPrev(el.scrollLeft > 4)
     setCanNext(el.scrollLeft < maxScroll - 4)
+    // Nearest card to the viewport center pops forward (Lusion-style depth)
+    const cards = Array.from(el.querySelectorAll<HTMLElement>('[data-card]'))
+    const center = el.getBoundingClientRect().left + el.clientWidth / 2
+    let best = 0
+    let bestDist = Infinity
+    cards.forEach((card, i) => {
+      const r = card.getBoundingClientRect()
+      const dist = Math.abs(r.left + r.width / 2 - center)
+      if (dist < bestDist) {
+        bestDist = dist
+        best = i
+      }
+    })
+    setActiveCard(best)
   }, [])
 
   useEffect(() => {
@@ -407,7 +428,7 @@ export default function Services() {
         >
           {services.map((service, i) => (
             <div key={service.number} data-card>
-              <ServiceCard service={service} index={i} />
+              <ServiceCard service={service} index={i} active={i === activeCard} />
             </div>
           ))}
         </div>

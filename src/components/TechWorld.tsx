@@ -132,9 +132,10 @@ function Aurora({ reducedMotion }: { reducedMotion: boolean }) {
   )
 }
 
-/** Camera rig — slow, smooth glide + pointer parallax (the video feel). */
+/** Camera rig — slow, smooth glide + pointer parallax + scroll drift (the video feel). */
 function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
   const target = useRef({ x: 0, y: 0 })
+  const scrollRef = useRef(0)
   const { camera } = useThree()
 
   useEffect(() => {
@@ -143,8 +144,16 @@ function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
       target.current.x = (e.clientX / window.innerWidth - 0.5) * 2
       target.current.y = -(e.clientY / window.innerHeight - 0.5) * 2
     }
+    const onScroll = () => {
+      scrollRef.current = window.scrollY
+    }
     if (hover) window.addEventListener('pointermove', onMove, { passive: true })
-    return () => window.removeEventListener('pointermove', onMove)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      window.removeEventListener('pointermove', onMove)
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [])
 
   useFrame((state) => {
@@ -155,8 +164,10 @@ function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
     const gz = Math.sin(t * 0.06) * 0.3
     const px = target.current.x * 0.35
     const py = target.current.y * 0.2
+    // Scroll-linked drift — the fixed aurora parallaxes subtly as you scroll (clamped)
+    const sy = Math.min(scrollRef.current * 0.00035, 0.9)
     camera.position.x += (gx + px - camera.position.x) * 0.05
-    camera.position.y += (1.3 + gy + py - camera.position.y) * 0.05
+    camera.position.y += (1.3 + gy + py + sy - camera.position.y) * 0.05
     camera.position.z += (5.4 + gz - camera.position.z) * 0.04
     camera.lookAt(0, 0.05, -1.4)
   })

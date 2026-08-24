@@ -170,6 +170,43 @@
     }
   }
 
+  /* Cuberto-style accent cursor — dot + lagging ring (native cursor stays visible) */
+  .cursor-dot,
+  .cursor-dot__ring {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 200;
+    border-radius: 50%;
+    opacity: 0;
+    will-change: transform;
+  }
+  .cursor-dot {
+    width: 8px;
+    height: 8px;
+    background: #7bb8e8;
+    box-shadow: 0 0 12px rgba(123, 184, 232, 0.8);
+  }
+  .cursor-dot__ring {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(123, 184, 232, 0.65);
+    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease,
+      opacity 0.3s ease;
+  }
+  .cursor-dot__ring.cursor-dot--active {
+    width: 58px;
+    height: 58px;
+    border-color: rgba(123, 184, 232, 1);
+    box-shadow: 0 0 24px rgba(123, 184, 232, 0.25);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cursor-dot__ring {
+      transition: none;
+    }
+  }
+
   /* Glass card (light theme variant) */
   .glass-card {
     background: rgba(255, 255, 255, 0.55);

@@ -9,6 +9,8 @@ import CTA from '@/components/CTA'
 import Footer from '@/components/Footer'
 import ScrollProgress from '@/components/ScrollProgress'
 import CursorGlow from '@/components/CursorGlow'
+import CursorDot from '@/components/CursorDot'
+import PillarsMarquee from '@/components/PillarsMarquee'
 import TechWorldLayer from '@/components/TechWorldLayer'
 
 export default function Home() {
@@ -16,11 +18,13 @@ export default function Home() {
     <>
       <ScrollProgress />
       <CursorGlow />
+      <CursorDot />
       <TechWorldLayer />
       <Header />
       <main className="relative z-10">
         <Hero />
         <TrustBar />
+        <PillarsMarquee />
         <Services />
         <Process />
         <Work />
