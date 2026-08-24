@@ -368,7 +368,9 @@ export default function Services() {
               Full-stack capability, <span className="text-gradient">from AI to immersive</span>
             </h2>
             <p className="mt-4 text-[16px] text-[#5A6B82] max-w-xl leading-relaxed">
-              Six disciplines, one accountable team. Drag the reel, or use the arrows.
+              One accountable team across strategy, consulting, design,
+              development, and maintenance. Improving your business at every
+              step. Drag the reel, or use the arrows.
             </p>
           </div>
 

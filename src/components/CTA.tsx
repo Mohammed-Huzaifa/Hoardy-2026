@@ -1,11 +1,37 @@
 'use client'
 import { useInView } from '@/lib/utils'
+import { useReducedMotion } from 'motion/react'
+import dynamic from 'next/dynamic'
+
+/* ThreeUI (Meng To's open-source three.js UI library) — CSS-free canvas component */
+const StreamVisual = dynamic(
+  () =>
+    import('@designcodeio/threeui/components/StreamConvergenceBackground').then(
+      (m) => m.StreamConvergenceBackground
+    ),
+  { ssr: false, loading: () => null }
+)
 
 export default function CTA() {
   const { ref, inView } = useInView()
+  const reduced = useReducedMotion()
 
   return (
     <section id="contact" className="relative py-28 lg:py-36 bg-[#1B2B5E]/90 backdrop-blur-md overflow-hidden">
+      {/* ThreeUI stream backdrop — brand-tinted, low opacity so text stays crisp */}
+      <div className="absolute inset-0" aria-hidden="true">
+        {!reduced && (
+          <StreamVisual
+            hue={-35}
+            saturation={0.85}
+            brightness={0.7}
+            opacity={0.55}
+            speed={1}
+            className="absolute inset-0 h-full w-full pointer-events-none"
+          />
+        )}
+        <div className="absolute inset-0 bg-[#1B2B5E]/50" />
+      </div>
       {/* Background: grid + glow orbs */}
       <div className="absolute inset-0 bg-grid-dark" aria-hidden="true" />
       <div

@@ -1,5 +1,16 @@
 'use client'
 import { useInView } from '@/lib/utils'
+import { useReducedMotion } from 'motion/react'
+import dynamic from 'next/dynamic'
+
+/* ThreeUI (Meng To's open-source three.js UI library) — CSS-free canvas component */
+const GlobeVisual = dynamic(
+  () =>
+    import('@designcodeio/threeui/components/OrbitalSphereBackground').then(
+      (m) => m.OrbitalSphereBackground
+    ),
+  { ssr: false, loading: () => null }
+)
 
 const differentiators = [
   {
@@ -58,6 +69,7 @@ const differentiators = [
 
 export default function About() {
   const { ref, inView } = useInView()
+  const reduced = useReducedMotion()
 
   return (
     <section id="about" className="py-24 lg:py-32 bg-[#F0F5FF]/75 backdrop-blur-md">
@@ -74,21 +86,56 @@ export default function About() {
           {differentiators.map((item, i) => (
             <div
               key={item.title}
-              className={`group relative rounded-2xl border border-[#C8D6E5] bg-white p-8 lg:p-10 transition-all duration-500 hover:border-[#7BB8E8]/50 hover:shadow-[0_20px_50px_rgba(27,43,94,0.08)] hover:-translate-y-1 ${
+              className={`group relative rounded-2xl border border-[#C8D6E5] bg-white p-8 lg:p-10 transition-all duration-500 hover:border-[#7BB8E8]/50 hover:shadow-[0_20px_50px_rgba(27,43,94,0.08)] hover:-translate-y-1 overflow-hidden ${
                 i === 0 ? 'md:col-span-2' : ''
               }`}
             >
-              <div className="flex items-start gap-5">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#7BB8E8]/10 border border-[#7BB8E8]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                  {item.icon}
+              {i === 0 ? (
+                /* Feature card: 3D globe visual + copy side by side */
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                  <div className="flex items-start gap-5">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#7BB8E8]/10 border border-[#7BB8E8]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-[20px] lg:text-[22px] font-semibold text-[#1A2332] mb-2.5 tracking-[-0.01em]">
+                        {item.title}
+                      </h3>
+                      <p className="text-[15px] text-[#5A6B82] leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                  {/* Three.js particle globe */}
+                  <div className="relative h-52 lg:h-64 rounded-2xl overflow-hidden bg-[#101F45] border border-[#C8D6E5]/50">
+                    {reduced ? (
+                      <div className="absolute inset-0 bg-gradient-to-br from-[#1B2B5E] to-[#101F45]" />
+                    ) : (
+                      <div className="absolute inset-0" style={{ filter: 'saturate(0.8)' }}>
+                        <GlobeVisual
+                          hue={-55}
+                          speed={0.9}
+                          className="absolute inset-0 h-full w-full pointer-events-none"
+                        />
+                      </div>
+                    )}
+                    <div className="absolute inset-0 bg-[#1B2B5E]/25" aria-hidden="true" />
+                    <span className="absolute bottom-4 left-4 font-mono text-[10px] uppercase tracking-[0.16em] text-[#9FD0F2]">
+                      North America → the world
+                    </span>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-[20px] lg:text-[22px] font-semibold text-[#1A2332] mb-2.5 tracking-[-0.01em]">
-                    {item.title}
-                  </h3>
-                  <p className="text-[15px] text-[#5A6B82] leading-relaxed">{item.description}</p>
+              ) : (
+                <div className="flex items-start gap-5">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#7BB8E8]/10 border border-[#7BB8E8]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-[20px] lg:text-[22px] font-semibold text-[#1A2332] mb-2.5 tracking-[-0.01em]">
+                      {item.title}
+                    </h3>
+                    <p className="text-[15px] text-[#5A6B82] leading-relaxed">{item.description}</p>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           ))}
         </div>
