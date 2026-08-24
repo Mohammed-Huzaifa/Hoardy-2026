@@ -1,7 +1,6 @@
 import Header from '@/components/Header'
 import Hero from '@/components/Hero'
 import TrustBar from '@/components/TrustBar'
-import FounderJourney from '@/components/FounderJourney'
 import Services from '@/components/Services'
 import Process from '@/components/Process'
 import Work from '@/components/Work'
@@ -22,7 +21,6 @@ export default function Home() {
       <main className="relative z-10">
         <Hero />
         <TrustBar />
-        <FounderJourney />
         <Services />
         <Process />
         <Work />
