@@ -6,7 +6,7 @@ const clients = [
   { name: 'The Arden', src: '/logos/arden.png' },
   { name: 'Bud Light', src: '/logos/bud-light.png' },
   { name: 'Tim Hortons', src: '/logos/tim-hortons.png' },
-  { name: 'Adidas SportsCheck', src: '/logos/adidas-sportscheck.png' },
+  { name: 'Adidas', src: '/logos/adidas-striker-lab.png' },
   { name: 'Budweiser', src: '/logos/budweiser.png' },
   { name: "Welch's", src: '/logos/welchs.png' },
   { name: 'GE', src: '/logos/ge.png' },
@@ -19,8 +19,6 @@ const clients = [
   { name: 'Stella Artois', src: '/logos/stella-artois.png' },
   { name: 'Roger', src: '/logos/roger.png' },
   { name: 'HoopTea', src: '/logos/hooptea.png' },
-  { name: 'Adidas Striker Lab', src: '/logos/adidas-striker-lab.png' },
-  { name: 'Adidas GA Cup', src: '/logos/adidas-ga-cup.png' },
   { name: 'Brickworks Ciderhouse', src: '/logos/brickworks-ciderhouse.png' },
 ]
 
