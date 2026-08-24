@@ -3,7 +3,9 @@ import { useInView } from '@/lib/utils'
 import { useReducedMotion } from 'motion/react'
 import dynamic from 'next/dynamic'
 
-/* ThreeUI (Meng To's open-source three.js UI library) — CSS-free canvas component */
+/* ThreeUI (Meng To's open-source three.js UI library) — canvas component + LumenCta button */
+import { LumenCta } from '@designcodeio/threeui/components/LumenCta'
+
 const StreamVisual = dynamic(
   () =>
     import('@designcodeio/threeui/components/StreamConvergenceBackground').then(
@@ -57,19 +59,23 @@ export default function CTA() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a
-            href="mailto:hello@hoardy.ai"
-            className="inline-flex items-center gap-2 bg-[#7BB8E8] text-[#1B2B5E] px-10 py-4 rounded-full text-[17px] font-semibold hover:brightness-110 hover:scale-[1.04] transition-all duration-300 group shine"
-          >
-            Let&apos;s talk
-            <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
-          </a>
-          <a
-            href="mailto:hello@hoardy.ai"
-            className="inline-flex items-center gap-2 border border-white/[0.2] text-[#EEF2FF] px-10 py-4 rounded-full text-[17px] font-semibold hover:border-[#7BB8E8] hover:text-[#7BB8E8] transition-all duration-300"
-          >
-            hello@hoardy.ai
-          </a>
+          <LumenCta
+            variant="primary"
+            mode="dark"
+            label="Let's talk"
+            ring
+            onClick={() => {
+              window.location.href = 'mailto:hello@hoardy.ai'
+            }}
+          />
+          <LumenCta
+            variant="ghost"
+            mode="dark"
+            label="hello@hoardy.ai"
+            onClick={() => {
+              window.location.href = 'mailto:hello@hoardy.ai'
+            }}
+          />
         </div>
 
         <p className="mt-10 font-mono text-[11px] uppercase tracking-[0.2em] text-[#C8D6E5]/60">

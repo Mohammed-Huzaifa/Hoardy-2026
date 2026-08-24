@@ -1,6 +1,17 @@
 'use client'
 import { useRef, useState, useEffect, useCallback } from 'react'
 import { useInView } from '@/lib/utils'
+import { useReducedMotion } from 'motion/react'
+import dynamic from 'next/dynamic'
+
+/* ThreeUI (Meng To's open-source three.js UI library) — CSS-free canvas component */
+const OrbitVisual = dynamic(
+  () =>
+    import('@designcodeio/threeui/components/OrbitalSphereBackground').then(
+      (m) => m.OrbitalSphereBackground
+    ),
+  { ssr: false, loading: () => null }
+)
 
 const projects = [
   {
@@ -31,6 +42,7 @@ const projects = [
 
 export default function Work() {
   const { ref, inView } = useInView()
+  const reduced = useReducedMotion()
   const trackRef = useRef<HTMLDivElement>(null)
   const [progress, setProgress] = useState(0)
   const [canPrev, setCanPrev] = useState(false)
@@ -157,6 +169,19 @@ export default function Work() {
             href="#contact"
             className="group relative w-[85vw] sm:w-[380px] lg:w-[420px] flex-shrink-0 snap-start rounded-2xl bg-[#1B2B5E] flex items-center justify-center p-8 hover:bg-[#14214A] transition-colors duration-500"
           >
+            {/* ThreeUI orbital sphere — a living 3D moment behind the final card */}
+            <div className="absolute inset-0" aria-hidden="true">
+              {!reduced && (
+                <div className="absolute inset-0" style={{ filter: 'saturate(0.8)' }}>
+                  <OrbitVisual
+                    hue={-55}
+                    speed={0.9}
+                    className="absolute inset-0 h-full w-full pointer-events-none"
+                  />
+                </div>
+              )}
+              <div className="absolute inset-0 bg-[#1B2B5E]/45" />
+            </div>
             <div className="absolute inset-0 bg-grid-dark opacity-60" aria-hidden="true" />
             <div
               className="absolute -bottom-20 -right-20 w-64 h-64 rounded-full bg-[#7BB8E8]/20 blur-[70px] group-hover:bg-[#7BB8E8]/30 transition-colors duration-500"

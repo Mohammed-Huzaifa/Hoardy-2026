@@ -1,5 +1,16 @@
 'use client'
 import { useInView } from '@/lib/utils'
+import { useReducedMotion } from 'motion/react'
+import dynamic from 'next/dynamic'
+
+/* ThreeUI (Meng To's open-source three.js UI library) — CSS-free canvas component */
+const StreamVisual = dynamic(
+  () =>
+    import('@designcodeio/threeui/components/StreamConvergenceBackground').then(
+      (m) => m.StreamConvergenceBackground
+    ),
+  { ssr: false, loading: () => null }
+)
 
 const steps = [
   {
@@ -34,9 +45,24 @@ const steps = [
 
 export default function Process() {
   const { ref, inView } = useInView()
+  const reduced = useReducedMotion()
 
   return (
     <section id="process" className="relative py-24 lg:py-32 bg-[#1B2B5E]/90 backdrop-blur-md overflow-hidden">
+      {/* ThreeUI stream backdrop — brand-tinted, flows behind the process cards */}
+      <div className="absolute inset-0" aria-hidden="true">
+        {!reduced && (
+          <StreamVisual
+            hue={-35}
+            saturation={0.85}
+            brightness={0.65}
+            opacity={0.4}
+            speed={0.9}
+            className="absolute inset-0 h-full w-full pointer-events-none"
+          />
+        )}
+        <div className="absolute inset-0 bg-[#1B2B5E]/55" />
+      </div>
       {/* Background texture */}
       <div className="absolute inset-0 bg-grid-dark" aria-hidden="true" />
       <div

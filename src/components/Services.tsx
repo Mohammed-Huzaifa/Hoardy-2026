@@ -286,13 +286,13 @@ function ServiceCard({
           </span>
         </div>
 
-        {/* Mini product mock */}
-        <div className="relative mb-5 transition-transform duration-500 group-hover:scale-[1.02]">
+        {/* Mini product mock — pops in 3D depth on hover */}
+        <div className="relative mb-5 transition-transform duration-500 group-hover:[transform:translateZ(34px)_scale(1.03)]">
           {service.mock}
         </div>
 
-        {/* Title + description */}
-        <div className="relative">
+        {/* Title + description — lifts with the mock */}
+        <div className="relative transition-transform duration-500 group-hover:[transform:translateZ(22px)]">
           <h3 className="text-[19px] font-semibold text-[#1A2332] tracking-[-0.01em] mb-2 transition-colors duration-300 group-hover:text-[#1B2B5E]">
             {service.title}
           </h3>

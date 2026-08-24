@@ -86,6 +86,90 @@
     height: 100%;
   }
 
+  /* ThreeUI LumenCta button — brand-tuned (navy → blue aurora gradient, ring, ghost) */
+  .lumen-cta {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    isolation: isolate;
+  }
+  .lumen-cta__button {
+    height: 54px;
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    padding: 0 36px;
+    border-radius: 999px;
+    border: 0;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1;
+    color: #fff;
+    white-space: nowrap;
+    position: relative;
+    cursor: pointer;
+    appearance: none;
+    background: linear-gradient(92deg, #101F45 0%, #1B2B5E 28%, #4A82C4 62%, #7BB8E8 100%);
+    box-shadow: 0 10px 32px rgba(74, 130, 196, 0.38), inset 0 1px rgba(255, 255, 255, 0.22);
+    transition: filter 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+    overflow: hidden;
+  }
+  .lumen-cta__button::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-120%);
+    background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.35) 50%, transparent 60%);
+    transition: transform 0.7s ease;
+    pointer-events: none;
+  }
+  .lumen-cta__button:hover:not(:disabled) {
+    filter: brightness(1.1);
+    box-shadow: 0 14px 40px rgba(123, 184, 232, 0.45), inset 0 1px rgba(255, 255, 255, 0.28);
+    transform: translateY(-1px);
+  }
+  .lumen-cta__button:hover:not(:disabled)::after {
+    transform: translateX(120%);
+  }
+  .lumen-cta__button:active:not(:disabled) {
+    transform: translateY(0) scale(0.985);
+  }
+  .lumen-cta__button:focus-visible {
+    outline: 2px solid #7BB8E8;
+    outline-offset: 3px;
+  }
+  .lumen-cta__button:disabled {
+    cursor: default;
+    opacity: 0.55;
+  }
+  .lumen-cta__button--ghost {
+    background: rgba(255, 255, 255, 0.05);
+    outline: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: #EEF2FF;
+  }
+  .lumen-cta__button--ghost:hover:not(:disabled) {
+    background: rgba(123, 184, 232, 0.12);
+    outline-color: rgba(123, 184, 232, 0.6);
+    box-shadow: none;
+  }
+  .lumen-cta__ring {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    flex: 0 0 auto;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .lumen-cta__button,
+    .lumen-cta__button::after {
+      transition: none;
+    }
+  }
+
   /* Glass card (light theme variant) */
   .glass-card {
     background: rgba(255, 255, 255, 0.55);
