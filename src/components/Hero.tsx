@@ -61,7 +61,7 @@ export default function Hero() {
       />
 
       <div className="relative max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-8">
           {/* Left column */}
           <div>
             {/* Mono label */}
@@ -129,9 +129,10 @@ export default function Hero() {
             </dl>
           </div>
 
-          {/* Right column — ThreeUI 3D centerpiece (desktop only; mobile has no spacer gap) */}
+          {/* Right column — ThreeUI 3D centerpiece, stretches to the text column's
+              height and centers itself against it (desktop only) */}
           <div
-            className="hidden lg:block relative h-[540px]"
+            className="hidden lg:block relative"
             aria-hidden="true"
             onMouseMove={onOrbMove}
             onMouseLeave={onOrbLeave}
