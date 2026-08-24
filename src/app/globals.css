@@ -78,6 +78,14 @@
     transform: translateX(120%);
   }
 
+  /* ThreeUI canvas components ship no CSS — replicate the minimal shell rule
+     so canvases fill their host and scale with DPR */
+  .threeui-background > canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
   /* Glass card (light theme variant) */
   .glass-card {
     background: rgba(255, 255, 255, 0.55);
