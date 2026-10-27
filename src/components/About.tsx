@@ -87,7 +87,7 @@ export default function About() {
             <div
               key={item.title}
               className={`group relative rounded-2xl border border-[#C8D6E5] bg-white p-8 lg:p-10 transition-all duration-500 hover:border-[#7BB8E8]/50 hover:shadow-[0_20px_50px_rgba(27,43,94,0.08)] hover:-translate-y-1 overflow-hidden ${
-                i === 0 ? 'md:col-span-2' : ''
+                i === 0 || i === 3 ? 'md:col-span-2' : ''
               }`}
             >
               {i === 0 ? (
@@ -122,6 +122,28 @@ export default function About() {
                       North America → the world
                     </span>
                   </div>
+                </div>
+              ) : i === 3 ? (
+                /* Wide card: fills the otherwise-empty last grid cell */
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+                  <div className="flex items-start gap-5 max-w-2xl">
+                    <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[#7BB8E8]/10 border border-[#7BB8E8]/20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      {item.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-[20px] lg:text-[22px] font-semibold text-[#1A2332] mb-2.5 tracking-[-0.01em]">
+                        {item.title}
+                      </h3>
+                      <p className="text-[15px] text-[#5A6B82] leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                  <a
+                    href="#contact"
+                    className="shrink-0 inline-flex items-center gap-1.5 text-[15px] font-semibold text-[#7BB8E8] hover:text-[#1B2B5E] transition-colors duration-200"
+                  >
+                    Start a project
+                    <span aria-hidden="true">→</span>
+                  </a>
                 </div>
               ) : (
                 <div className="flex items-start gap-5">

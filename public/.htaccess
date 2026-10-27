@@ -1,0 +1,63 @@
+# hoardy.ai — Hostinger (LiteSpeed / Apache) server config
+# Deployed inside public_html. Keep this file additive and conservative: a syntax
+# error here takes the whole site down, so every block is guarded by IfModule.
+
+# Never let a directory listing stand in for a page (guarded: a bare Options
+# directive is rejected by some shared hosts and would 500 the whole site).
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Markdown content negotiation
+#
+# An agent that sends `Accept: text/markdown` gets the pre-rendered .md mirror of
+# the same page instead of HTML. Mirrors are generated at build time by
+# scripts/generate-discovery.mjs, so they can never go stale.
+# ---------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # /  ->  /index.md
+  RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+  RewriteRule ^$ /index.md [L]
+
+  # /services or /services/  ->  /services.md
+  RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+  RewriteCond %{REQUEST_URI} ^/services/?$
+  RewriteRule ^ /services.md [L]
+
+  # /blog/<slug>/  ->  /blog/<slug>.md
+  RewriteCond %{HTTP_ACCEPT} text/markdown [NC]
+  RewriteCond %{DOCUMENT_ROOT}/blog/$1.md -f
+  RewriteRule ^blog/([^/]+)/?$ /blog/$1.md [L]
+</IfModule>
+
+<IfModule mod_mime.c>
+  AddType text/markdown .md
+</IfModule>
+
+<IfModule mod_headers.c>
+  # The rules above make the response depend on Accept, so caches must know.
+  Header merge Vary Accept
+</IfModule>
+
+# ---------------------------------------------------------------------------
+# Caching — cuts repeat-visit cost and keeps TTFB low for crawlers.
+# HTML is never cached so a deploy goes live immediately.
+# ---------------------------------------------------------------------------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/png "access plus 6 months"
+  ExpiresByType image/jpeg "access plus 6 months"
+  ExpiresByType image/webp "access plus 6 months"
+  ExpiresByType image/svg+xml "access plus 6 months"
+  ExpiresByType font/woff2 "access plus 1 year"
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/markdown "access plus 1 hour"
+  ExpiresByType application/xml "access plus 1 hour"
+  ExpiresByType application/rss+xml "access plus 1 hour"
+  ExpiresByType text/plain "access plus 1 hour"
+</IfModule>

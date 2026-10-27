@@ -1,0 +1,87 @@
+# hoardy.ai — crawler policy
+# Everything on this site is public. Search engines, AI assistants and agents may
+# fetch, index and cite any page. No section is restricted.
+#
+# NOTE: robots.txt is a policy statement, not a firewall. If a crawler below still
+# gets a 4xx from the server, the block is at the hosting layer (Hostinger bot
+# protection) and must be fixed in hPanel, not here.
+
+User-agent: *
+Allow: /
+
+# --- OpenAI ---------------------------------------------------------------
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# --- Anthropic ------------------------------------------------------------
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# --- Perplexity -----------------------------------------------------------
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# --- Google / Gemini ------------------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# --- Microsoft / Copilot --------------------------------------------------
+User-agent: Bingbot
+Allow: /
+
+# --- Apple ----------------------------------------------------------------
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# --- Others that feed models and link previews ----------------------------
+User-agent: CCBot
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+# --- Explicit no-crawl: SEO scrapers that add no traffic ------------------
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+# Sitemap directive is site-wide and independent of the groups above.
+Sitemap: https://hoardy.ai/sitemap.xml

@@ -8,7 +8,7 @@ export default function Preloader() {
   const [done, setDone] = useState(false)
 
   useEffect(() => {
-    const duration = 1500
+    const duration = 800
     const start = performance.now()
     let rafId: number
 
@@ -19,13 +19,13 @@ export default function Preloader() {
       if (p < 1) {
         rafId = requestAnimationFrame(tick)
       } else {
-        setTimeout(() => setDone(true), 300)
+        setTimeout(() => setDone(true), 150)
       }
     }
     rafId = requestAnimationFrame(tick)
 
     // Hard fallback: never trap the page behind the preloader
-    const failsafe = setTimeout(() => setDone(true), 2800)
+    const failsafe = setTimeout(() => setDone(true), 1800)
 
     return () => {
       cancelAnimationFrame(rafId)

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hoardy.ai — Notes from the build</title>
+    <link>https://hoardy.ai/blog/</link>
+    <description>How we ship AI agents, websites, and immersive products for brands.</description>
+    <language>en-ca</language>
+    <lastBuildDate>Tue, 27 Oct 2026 18:40:41 GMT</lastBuildDate>
+    <atom:link href="https://hoardy.ai/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Agentic Era: What We&apos;ve Learned Building AI Agents in Canada</title>
+      <link>https://hoardy.ai/blog/the-agentic-era-building-ai-agents-in-canada/</link>
+      <guid isPermaLink="true">https://hoardy.ai/blog/the-agentic-era-building-ai-agents-in-canada/</guid>
+      <pubDate>Wed, 30 Sep 2026 09:00:00 GMT</pubDate>
+      <description>Agents are already handing work to other agents. Canada has just made agentic AI a national priority. Here is how we strategise, plan, and build agentic workflows that survive production, and what to ask before you hire a builder.</description>
+      <category>AI Agents</category>
+      <category>Agentic Workflows</category>
+      <category>Canada</category>
+      <category>Engineering</category>
+    </item>
+    <item>
+      <title>The Bar for Writing Software Just Fell</title>
+      <link>https://hoardy.ai/blog/the-bar-for-writing-software-just-fell/</link>
+      <guid isPermaLink="true">https://hoardy.ai/blog/the-bar-for-writing-software-just-fell/</guid>
+      <pubDate>Wed, 09 Sep 2026 09:00:00 GMT</pubDate>
+      <description>Vibe coding makes an idea into a product in an afternoon. Agentic QA makes the machine check its own work. The ceiling moved. The floor did not, and that is where the builders who last are standing.</description>
+      <category>Vibe Coding</category>
+      <category>Engineering</category>
+      <category>Quality</category>
+      <category>Essay</category>
+    </item>
+  </channel>
+</rss>

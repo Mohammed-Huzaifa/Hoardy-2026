@@ -1,0 +1,569 @@
+# hoardy.ai — full site text
+
+> Hoardy is a Toronto-based boutique technology agency that builds AI agents and assistants, web and app products, product design, QA and maintenance, VR and immersive experiences, and the technical strategy behind them.
+
+Legal entity: 11371096 Canada Inc. Location: Toronto, Ontario, Canada, serving Mississauga, the GTA, Canada and clients worldwide. Contact: maaz@hoardy.ai. LinkedIn: https://www.linkedin.com/company/hoardy/ · X: https://x.com/hoardyAI
+
+---
+
+# hoardy.ai — Built for brands. Ready for agents.
+
+Hoardy is a Toronto-based boutique technology agency that builds AI agents and assistants, web and app products, product design, QA and maintenance, VR and immersive experiences, and the technical strategy behind them.
+
+## What we do
+
+### AI Agents & Assistants
+
+Custom AI agent setup, LLM integration, and workflow automation that augment your team, not replace it. Scoped from the workflow out, with human approval gates and an exception path.
+
+Tags: LLM integration, Workflow automation, Intelligent assistants
+
+### Web & App Development
+
+Full-stack web apps, responsive marketing sites, and progressive web experiences built performance-first, including Next.js static builds, e-commerce and CMS integrations.
+
+Tags: Full-stack, Responsive, PWA
+
+### Product Design (UI/UX)
+
+Research, information architecture, interface design, and design systems delivered as Figma specs a developer can build from without guessing.
+
+Tags: Research, Interface design, Design systems
+
+### QA & Maintenance
+
+Manual and automated testing, regression suites, accessibility and performance audits, and ongoing maintenance for sites and apps already in market.
+
+Tags: Test automation, Accessibility, Performance
+
+### VR & Immersive Tech
+
+WebGL and three.js experiences, 3D product visualisation, and headset-ready immersive builds for brands that need something physical-feeling.
+
+Tags: WebGL, 3D, Spatial
+
+### Technical Strategy
+
+Architecture decisions, stack selection, delivery planning, and the audit work that tells a founder what to build first and what to leave alone.
+
+Tags: Architecture, Delivery planning, Audits
+
+## Contact
+
+Email maaz@hoardy.ai or use the form at https://hoardy.ai/#contact. We answer within a day.
+
+---
+
+# The Agentic Era: What We've Learned Building AI Agents in Canada
+
+Published 2026-09-30 · Hoardy · 2467 words · https://hoardy.ai/blog/the-agentic-era-building-ai-agents-in-canada/
+
+> Agents are already handing work to other agents. Canada has just made agentic AI a national priority. Here is how we strategise, plan, and build agentic workflows that survive production, and what to ask before you hire a builder.
+
+The first time one agent hands work to another, the novelty wears off quickly and something quieter takes its place. A request arrives at 2am. It is picked up, enriched, checked against policy, and routed. By morning, a person finds a decision waiting instead of a queue.
+
+That is the shift we build for. Not a chatbot that answers, and not a script that runs. A system that acts, checks its own work, and hands off to a human at the right moment.
+
+On June 4, 2026, Prime Minister Mark Carney launched **AI for All**, Canada's national artificial intelligence strategy, in Toronto. It is a $2.3-billion commitment built on six pillars, and it names the thing we do for a living: alongside modernised privacy law and sovereign compute, it commits to expanding Canada's AI safety capability in response to "the rapid expansion of AI capabilities and the growing adoption of **agentic AI**", and to ensuring every post-secondary student has access to *trusted AI agents*.
+
+Canada wrote agents into its national plan. This essay is about what it actually takes to build them.
+
+## What is an AI agent?
+
+An AI agent is software that pursues a goal instead of running a fixed script. It plans, calls tools, reads the results, and adapts. Always inside boundaries you set, with a human accountable for the outcome. A process becomes *agentic* when agents own parts of it end to end, including the decisions about what happens next.
+
+The difference between that and a chatbot is the difference between advice and work. A chatbot tells you how to reset a password. An agent resets it, verifies the account belongs to the right person, records what it did, and escalates the one case in fifty that does not fit the pattern.
+
+## Copilots, coworkers, and the layer above them
+
+It helps to separate three layers, because most disappointment in this market comes from buying one and expecting another.
+
+- **Assistants (copilots)** draft, summarise, and suggest. The human still does the work; the model does the typing.
+- **Agentic workflows (coworkers)** own a process end to end. The agent connects to the systems, takes the action, checks the result, and follows the escalation rules.
+- **Multi-agent systems** put specialised agents behind a single outcome: one plans, one retrieves, one acts, one reviews.
+
+Most organisations are still at the first layer, and most of the value sits at the second. The frontier is the third.
+
+## Agent-to-agent: the protocol layer just became real
+
+For years, "multi-agent" meant agents inside one framework, sharing one memory, wired together with custom code. Connecting an agent built on one platform to an agent built on another meant writing bespoke integration code for every new pairing. That is now solved at the standards level, and it happened quickly.
+
+The **Model Context Protocol (MCP)** standardised how an agent connects to tools and data. The **Agent2Agent (A2A) protocol** standardised how agents find and delegate to each other. A2A began at Google in April 2025, was donated to the Linux Foundation that June, and reached its stable v1.0 specification with multi-protocol support, signed agent cards for cryptographic identity, and enterprise-grade multi-tenancy.
+
+The adoption numbers at its one-year mark are the part worth sitting with: more than 150 supporting organisations, a core repository past 22,000 stars, SDKs in five production languages, and native support inside Azure AI Foundry, Copilot Studio, and AWS Bedrock AgentCore. In August 2026 it was accepted into the Agentic AI Foundation, alongside MCP, goose, and AGENTS.md.
+
+> MCP connects an agent to its tools. A2A connects an agent to other agents. Together they turn a pile of automation into something closer to a workforce.
+
+What that means in practice: an agent can publish a structured card describing what it does and how to reach it. Another agent, built by a different team on a different platform, can read it, negotiate, and delegate, without a human writing the integration.
+
+The caution is equally real. Agent-to-agent coordination multiplies capability and multiplies failure modes. When three agents cooperate, a bad assumption can travel. Which is why the second half of this essay is about discipline rather than architecture.
+
+## What an agentic workflow looks like in production
+
+Here is a concrete one. A hiring pipeline we have built runs as seven connected agents: the role is published, applications are enriched and matched against the requirements, candidates are screened by voice, interviews are scheduled against real calendars, and a briefing lands with the hiring executive. Every result is written back into the system of record, so the process of record and the process that actually happened stay the same thing.
+
+The same shape repeats across functions:
+
+- **IT service desk.** Password resets, account unlocks, software requests, and ticket triage, all resolved directly, with sensitive cases escalated with full context attached.
+- **Finance and procurement.** Invoice approvals, purchase orders, expense reports, vendor onboarding, and approval routing.
+- **HR and people operations.** Onboarding and offboarding, policy questions, document validation, and scheduling.
+- **Higher education.** Admissions inquiries, academic policy questions, advising support, and student services that answer at 2am, because students do not only work at 10am.
+
+Two design decisions separate these from a demo. First, the agents live where the team already works: Teams, Slack, the tools already open in a browser tab. Not a new portal nobody opens. Second, every agent is defined by **what it may do, what requires approval, and when it escalates**, in writing, before it goes live. Permissions are respected. Actions are logged. Human handoffs are designed, not improvised.
+
+## Where agents pay back, and where they do not
+
+The honest version of the market, from the primary sources:
+
+- Gartner expects **40% of enterprise applications to include task-specific AI agents by the end of 2026**, up from under 5% in 2025, and 33% of enterprise software applications to include agentic AI by 2028.
+- McKinsey finds **62% of organisations experimenting with agents and 23% scaling them**, with no single business function past roughly 10% at scale.
+- Microsoft's 2026 Work Trend Index reports that active agents in its ecosystem grew **15x year over year**, rising to **18x in large enterprises**.
+- IDC projects agentic AI will account for **more than a quarter of worldwide IT spending by 2029**.
+
+Against that, the failure data:
+
+- Gartner also predicts **more than 40% of agentic AI projects will be cancelled by the end of 2027**, citing escalating costs, unclear business value, and inadequate risk controls. The same analysis estimates that only about 130 of the thousands of vendors marketing "agentic" AI are genuinely agentic. The rest is what Gartner calls *agent washing*.
+- MIT's Project NANDA found **95% of enterprise generative-AI pilots delivered no measurable P&L impact**, and that implementations led by external partners succeeded about twice as often as internal builds.
+
+Read those two lists together and the lesson is not that agents fail. It is that agents fail for boring, avoidable, human reasons: nobody named the workflow, nobody priced the exception path, nobody built the evaluation harness.
+
+## Why we start with the workflow, not the model
+
+Our method is deliberately unglamorous. It runs in four moves.
+
+**1. Strategise.** We find the workflow, not the technology. It has to be repetitive, rules-based, high-volume, and measurable. Then we write down the number that proves it worked: minutes to resolution, tickets auto-resolved, days to approval, cost per transaction. If we cannot name the metric, we do not start.
+
+**2. Plan.** We map the systems the work touches (CRM, ERP, HRIS, ITSM, the calendar, the inbox), and decide where the agents sit, where a human stays in the loop, and what a wrong answer costs. The exception path gets designed first, because that is where the cost and the risk live.
+
+**3. Build.** Agents, integrations, permissions, guardrails, escalation rules, audit trail. Most of the engineering is not the model. It is the data pipeline, the integration surface, and the definition of done.
+
+**4. Prove.** An evaluation harness before launch. Test cases that run on every change, so a regression can be told apart from ordinary variance. Observability into what the agent did and why. A rollback plan a human can execute at 9am without heroics.
+
+This is the part clients underestimate, and the part we care most about. Hoardy is a development and quality-assurance firm: we have shipped more than forty products, and QA has been in every sprint. Agentic systems need that discipline more than ordinary software does, not less.
+
+## Why Toronto, and why now
+
+Canada's claim on this field is not a marketing line. It is a lineage, and it belongs to the whole corridor around Toronto, from Mississauga and the wider GTA to Waterloo's labs and Montréal's research institutes.
+
+In 2012, Geoffrey Hinton and two students at the University of Toronto, Alex Krizhevsky and Ilya Sutskever, trained a neural network called AlexNet on two consumer GPUs and won an image-recognition competition by a margin that reorganised the field. The paper became one of the most cited in computer science, the source code is now preserved by the Computer History Museum, and Hinton shared the 2024 Nobel Prize in Physics for foundational work on neural networks. Nearly everything in this essay runs on the direction that work set.
+
+That lineage became infrastructure. The **Vector Institute** launched in Toronto in 2017 with $135 million and more than forty industry partners, and now supports a community of more than 950 researchers, 369-plus published papers, and a FastLane program that has worked with hundreds of Canadian companies. Its applied work sits squarely on this topic: an Agentic AI Bootcamp with manufacturers such as Linamar, and free open-source safety tooling such as UnBias-Plus, released in June 2026.
+
+It is now policy as well. Canada's strategy commits to sovereign compute and a world-leading public AI supercomputer by 2031, a $700-million Compute Access Fund, a $500-million Regional AI Initiative, a $500-million growth fund for high-potential AI firms, a certification program for trustworthy AI, and watermarking of AI-generated content. It targets lifting business AI adoption from 12% to 60% by 2034 and creating up to 250,000 jobs through AI adoption by 2031. Cohere, founded in Toronto in 2019, is one of very few frontier model companies outside the United States. In Montréal, Yoshua Bengio's LawZero is building oversight systems specifically for the agentic wave.
+
+The Canadian framing is worth more than patriotism. The strategy's three principles (trust, opportunity, sovereignty) are the three questions every serious agent deployment has to answer anyway. What may this system do. Who benefits. Who is accountable when it is wrong.
+
+## How to choose an agent builder in Canada
+
+Most disappointment in this market starts with the wrong first question. "What can you build?" invites a demo. These invite an answer:
+
+1. **Which single workflow will you change first, and what number proves it worked?**
+2. **What happens on the exception path:** who receives it, how quickly, with what context?
+3. **Show me the evaluation harness.** How do you tell a regression from ordinary variance?
+4. **Where does a human stay in the loop, and who owns the outcome** when the agent is wrong?
+5. **What is the fully loaded cost per run**, including retries, escalations, and model calls?
+6. **What is the rollback story**, and who can execute it?
+
+A builder who can answer those six questions in specifics is worth more than one with a longer list of frameworks.
+
+## Questions we get asked
+
+**What is agentic AI?**
+Agentic AI describes systems that pursue goals rather than execute fixed scripts: they plan, use tools, observe results, and adapt within boundaries. The distinguishing feature is not intelligence but autonomy with accountability.
+
+**What is the difference between an AI agent and a chatbot?**
+A chatbot produces text for a human to act on. An agent acts: it connects to systems, completes the task, verifies the outcome, and escalates what it cannot finish.
+
+**What is agent-to-agent (A2A)?**
+A2A is an open protocol, now governed by the Linux Foundation and the Agentic AI Foundation, that lets agents built on different platforms discover each other and delegate tasks. MCP connects agents to tools; A2A connects agents to agents.
+
+**How long does it take to deploy an AI agent?**
+A single well-scoped workflow can go live in weeks rather than quarters, because the first version does not need to be the whole process. Industry benchmarks put median payback on agent deployments at roughly five months, which is an argument for starting narrow and measuring early.
+
+**Do AI agents need human oversight?**
+Yes, by design. Mature deployments define what the agent may do alone, what requires approval, and what must be escalated. Oversight is not a brake on autonomy; it is what makes autonomy safe enough to use.
+
+**How much does it cost to build an AI agent?**
+It depends far more on integrations, data quality, and governance than on model choice. The useful question is not the build price but the fully loaded cost per run, including the exception path, against the cost of the process today. That is the number we scope against.
+
+## The next layer is agents talking to agents
+
+The first wave of AI asked whether a model could write. The second asked whether a system could act. The one arriving now asks whether systems can coordinate: a planner delegating to a specialist, a specialist reporting to a reviewer, a reviewer escalating to a person who never has to know how any of it worked.
+
+Canada has decided it wants to be a country that builds that, not one that only buys it. We are a Toronto development and QA firm, and we build agentic workflows for companies that would rather own the outcome than rent it.
+
+If you are working out where agents belong in your business, the most useful first conversation is not about frameworks. It is about the one process you would be relieved to stop doing by hand.
+
+[Start a project](https://hoardy.ai/#contact). We answer within a day.
+
+## Sources
+
+- Government of Canada, [Canada's National Artificial Intelligence Strategy: AI for All](https://ised-isde.canada.ca/site/ised/en/canadas-national-artificial-intelligence-strategy-ai-all) (June 4, 2026)
+- Prime Minister of Canada, [Prime Minister Carney launches AI for All](https://www.pm.gc.ca/en/news/news-releases/2026/06/04/prime-minister-carney-launches-ai-all-canadas-new-national-artificial) (June 4, 2026)
+- Linux Foundation, [A2A Protocol surpasses 150 organizations](https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year) (April 9, 2026)
+- A2A Protocol, [A new chapter for A2A: joining the Agentic AI Foundation](https://a2a-protocol.org/latest/blog/2026/08/27/a-new-chapter-for-a2a-joining-the-agentic-ai-foundation/) (August 27, 2026)
+- Gartner, [Over 40% of agentic AI projects will be canceled by end of 2027](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027) (June 25, 2025)
+- MIT Project NANDA, [The GenAI Divide: State of AI in Business 2025](https://cdn.prod.website-files.com/68c7c6fc5d08d3aa30556cf2/69142ec4ddc4626ac32d1515_v0.1_State_of_AI_in_Business_2025_Report%20%281%29.pdf) (July 2025)
+- Microsoft, [2026 Work Trend Index: Agents, human agency, and the opportunity for every organization](https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization)
+- University of Toronto, [AlexNet source code to be preserved by the Computer History Museum](https://www.utoronto.ca/news/neural-net-behind-geoffrey-hinton-s-nobel-prize-be-preserved-computer-history-museum) (March 2025)
+- Vector Institute, [Annual Report 2025-26](https://annual-report.vectorinstitute.ai/)
+
+---
+
+# The Bar for Writing Software Just Fell
+
+Published 2026-09-09 · Hoardy · 1090 words · https://hoardy.ai/blog/the-bar-for-writing-software-just-fell/
+
+> Vibe coding makes an idea into a product in an afternoon. Agentic QA makes the machine check its own work. The ceiling moved. The floor did not, and that is where the builders who last are standing.
+
+This essay is our answer to an argument that has split the industry in two. Half the discourse says the new tools make everyone a builder; the other half says they are producing slop at scale. Both sides are describing the same tool. What they disagree about is whether quality is a property of the tool, or of the person holding it. We build software for a living, and we have a clear answer: the tool raised the ceiling, and the floor is still entirely human.
+
+## What is vibe coding, exactly?
+
+Vibe coding is a way of writing software where you describe what you want in natural language and let an AI model generate the code, iterating on the behaviour you observe rather than editing source directly. Andrej Karpathy, who coined the term in early 2025, described it as "fully giving in to the vibes": embracing the new capability rather than fighting it.
+
+That definition matters, because most arguments about vibe coding never settle what it is. Done honestly, it is a new interaction model for building. Done carelessly, it is a way to generate a confident-looking demo that collapses the moment it meets real users, real data, or a real deadline.
+
+## Agentic QA: the machine checks itself
+
+The interesting development is not that AI writes code. It is that AI can now be pointed back at its own output. Agentic QA is the practice of using AI agents to test, verify, and audit software: checking that what was claimed to be built is actually what works.
+
+The tests are written into the sprint instead of bolted on before launch. The CI/CD pipeline blocks merges that fail. Performance budgets are enforced, not hoped for. Security checks run continuously, not as a pre-launch scare.
+
+We have built forty-plus products this way, and it costs more on paper. It costs far less in client retention, rework, and the 2am page-down calls you never get when the foundation is solid.
+
+## The part that is still human
+
+Here is what the pro-vibe and anti-vibe camps both miss. Speed to create was never the scarce resource in software. Judgment was. The machine can now write the code; it still cannot know when a number in the demo will not survive contact with the real data.
+
+Software that lasts was never made by speed. It was made by judgment, by rigour, and by someone who cared about the thing itself. That part is still human. It always will be.
+
+![A geometric breakdown of the Hoardy crane: eight fold petals radiating from the origami mark, the preliminary fold every form begins from.](/blog/the-bar-for-writing-software-just-fell/origami-fold.png)
+
+Every finished thing is a series of earlier decisions nobody sees. The crane in our mark is folded from a flat square; no one looking at the finished bird thinks about the square, but the square is where the whole thing was decided. Software is no different. The finished product hides the discipline that made it, and that discipline is the entire product.
+
+> The machine can now write the code. It cannot yet decide what is worth building, or hold the finished thing to the standard of the idea.
+
+We built Hoardy around that belief. Not to get work done. There are enough firms that get work done. We are here for the ideas people carry for years before they are ready to say them out loud. We listen until the vision stops being yours on paper and becomes ours in understanding. Then we shape it with the character of the person who imagined it. What ships is not a deliverable. It is a curated piece, a product treated the way an artist treats a canvas.
+
+Rick Rubin wrote that the goal of art is not perfection. The goal is to share who we are and how we see the world. Software, at its best, is exactly that: a way of seeing, given form. He also said the object is not to make art, but to be in that wonderful state. We build to stay in that state, project after project, for the people brave enough to bring something new into existence.
+
+## What this means for founders
+
+If you are a founder reading the hype, here is the practical version. The new tools genuinely lower the cost of a first version. That is real, and it is worth using. What they do not lower is the cost of being wrong in production: broken authentication, a demo that cannot scale, an AI feature that answers confidently from documents it was never allowed to see.
+
+The teams that win the next decade will be the ones that treat AI as a reason to raise their standards, not lower them. They will test what the machine generates, check the numbers across documents, and keep a human accountable for the whole. That is not caution. That is craft.
+
+## Success was never overnight
+
+Every era gets the tool it deserves, and the tool is never the whole story. Success is a vision held daily, and a belief that does not flinch when the work gets quiet. Technology is not a department inside a business. It is the way a business thinks, moves, and matters, and the businesses that last are the ones that treat what they build like it will be seen, used, and remembered.
+
+We are building a company for that long arc: AI-native engineering, web and product development, design, and quality assurance under one accountable team. If you are building something that matters to you, something you would want made with as much care as it was imagined, we would like to understand it before you brief us.
+
+[Start a project](https://hoardy.ai/#contact). We answer within a day.
+
+## Questions founders actually ask
+
+**Is vibe coding production-ready?**
+
+Excellent for prototypes and early versions; dangerous when it is treated as a substitute for engineering discipline. Production-ready software still needs architecture, testing, security review, and someone accountable for the whole.
+
+**What is the difference between vibe coding and agentic engineering?**
+
+Vibe coding generates software from natural-language descriptions, with the human iterating on behaviour. Agentic engineering uses AI agents across the whole lifecycle: writing code, but also testing, reviewing, and maintaining it. One makes a demo; the other maintains a system.
+
+**Does AI-generated code need testing?**
+
+More than human-written code, not less. A model can produce a confident answer that is subtly wrong in ways a human reviewer is more likely to catch, which is exactly why agentic QA exists.
+
+**How does Hoardy guarantee quality on AI-assisted builds?**
+
+Quality is a gate, not a step. Work only merges when the tests, performance budgets, and security checks pass, and a human decides what is ready to ship.
+
+---
+
+# Privacy Policy
+
+# Privacy Policy
+
+**Hoardy, a brand of 11371096 Canada Inc.**
+
+Effective date: September 30, 2026
+Last updated: September 30, 2026
+
+## 1. Who we are
+
+11371096 Canada Inc., operating as Hoardy ("Hoardy", "we", "us", "our"), is a Canadian corporation that designs, builds, and quality-assures software. Our registered office is at 220 Missinnihe Way, Suite 1411, Mississauga, Ontario L5H 0A9, Canada.
+
+This policy explains how we handle personal information in the course of our business: when you visit hoardy.ai, when you contact us, when you engage us for work, and when we work with clients, suppliers, and partners.
+
+## 2. The law we follow
+
+We are a private-sector organization based in Ontario, so the Personal Information Protection and Electronic Documents Act (PIPEDA) governs how we collect, use, and disclose personal information in the course of commercial activity.
+
+PIPEDA sets out ten fair information principles, and this policy is built on them: accountability; identifying purposes; consent; limiting collection; limiting use, disclosure, and retention; accuracy; safeguards; openness; individual access; and challenging compliance.
+
+Where another law gives you stronger rights, we honour it. That includes Quebec's privacy legislation, known as Law 25, for individuals in Quebec.
+
+Canadian federal privacy law is being modernized. Bill C-36, which would enact the Protecting Privacy and Consumer Data Act and replace the privacy provisions of PIPEDA, received first reading on June 15, 2026 and remains before Parliament. It is not law yet, and PIPEDA governs until it is. We will update this policy if the law changes.
+
+## 3. What we collect
+
+We limit collection to what we need for the purposes described below. In practice that is:
+
+- **Information you give us.** Your name, email address, telephone number, company name, role, and anything you write to us, including through the contact form on our site.
+- **Enquiry and correspondence records.** Emails, call notes, meeting notes, and support requests between us.
+- **Project information.** When you engage us, the business details, documents, specifications, systems access, and materials you share so we can do the work. Some of this may contain personal information about your staff, customers, or users. In those situations you remain the organization responsible for that information, and we handle it as your service provider, on your instructions and under our agreement with you.
+- **Technical information.** When you visit our site, our systems and our hosting provider may record your IP address, browser type and version, operating system, the pages you view, the time of your visit, and the page that referred you.
+- **Cookies and similar technologies.** Small files placed on your device, described in section 7.
+- **Recruitment information.** If you apply to work with us, the information in your application and our notes on it.
+
+We do not collect information about children, and we do not buy personal information from data brokers.
+
+## 4. Why we collect it
+
+We use personal information to:
+
+- respond to your enquiry and answer your questions;
+- prepare proposals, statements of work, and invoices;
+- deliver, support, and improve the services you engage us for;
+- keep our records accurate and our accounts in order;
+- protect our site, our systems, and our clients from fraud, abuse, and security incidents;
+- understand in aggregate how our site is used, so we can improve it;
+- meet our legal, tax, and accounting obligations; and
+- send you updates and marketing, but only where you have consented or the law otherwise allows.
+
+We do not use personal information for purposes that a reasonable person would consider inappropriate, and we do not sell it.
+
+## 5. Consent
+
+We collect, use, and disclose personal information with your consent, except where the law allows us to proceed without it. Consent may be express (for example, when you submit a form or tick a box) or implied by your conduct (for example, when you email us asking for a reply).
+
+You may withdraw your consent at any time, subject to legal and contractual restrictions and reasonable notice. If you withdraw consent, we may no longer be able to provide something that depends on that information.
+
+There are limited situations where the law allows us to collect, use, or disclose personal information without consent. These include where it is required by law, where we must comply with a subpoena, warrant, or court order, where we need to collect a debt, where it is needed to investigate a breach of an agreement or a contravention of law, where there is an emergency that threatens someone's life, health, or security, and where we need advice from our lawyers or other professional advisers.
+
+## 6. Email and Canada's anti-spam law
+
+We follow Canada's Anti-Spam Legislation (CASL). When we send a commercial electronic message, we have your consent, we identify ourselves, we include our mailing address and a way to reach us, and every message includes a working unsubscribe mechanism. If you unsubscribe, we act on it within 10 business days. We do not bury consent in fine print, and we do not use pre-ticked boxes.
+
+## 7. Cookies and analytics
+
+Our site uses cookies and similar technologies for two reasons: to make the site work, and to understand how it is used.
+
+Essential cookies are required for the site to function. Analytics cookies tell us which pages are read and how visitors arrive, in aggregate. Analytics data is used to improve the site, not to build profiles of individuals.
+
+You can control and delete cookies through your browser settings. If you block cookies, parts of the site may not work as intended. If you are in Quebec, we ask for your consent before placing non-essential cookies on your device.
+
+## 8. When we share information
+
+We do not sell, rent, trade, or licence personal information. We share it only in these situations:
+
+- **Service providers.** Companies that help us run our business, such as our web hosting provider, email and communications providers, analytics providers, and accounting and payment services. They may use the information only to provide their service to us, and we require them to protect it.
+- **Professional advisers.** Our lawyers, accountants, and insurers, where needed.
+- **Legal requirements.** Where we are required or permitted by law, including in response to a lawful request from a public authority. Where a request comes from an organization claiming legal authority, we take reasonable steps to confirm that authority.
+- **A business transaction.** If we merge, amalgamate, sell assets, or are otherwise reorganized, personal information may be transferred as part of that transaction. The receiving organization would be required to protect it consistent with PIPEDA and this policy.
+- **With your consent.** Any other sharing happens only with your consent.
+
+## 9. Where your information is stored
+
+We are based in Canada. Some of the service providers we rely on store or process information in Canada, the United States, or the European Union. Information handled outside Canada is subject to the laws of the jurisdiction where it is held, and a foreign government may be able to obtain access to it under a lawful order.
+
+We remain responsible for personal information under our control. We use contractual and technical measures to keep the level of protection consistent with PIPEDA, and where we transfer information of individuals in Quebec outside Quebec, we complete a privacy impact assessment as Law 25 requires.
+
+## 10. How long we keep it
+
+We keep personal information only as long as we need it for the purposes described in this policy, or as long as the law requires. Retention periods depend on the type of information: enquiry records, client project records, invoices and tax records, and security logs each have their own life.
+
+When information is no longer needed, we destroy or erase it securely, having regard to how sensitive it is. We keep records of any breach of security safeguards for at least two years, as the Breach of Security Safeguards Regulations require, whether or not the breach had to be reported.
+
+## 11. How we protect it
+
+We use safeguards that reflect the sensitivity of the information we hold. These include access controls and least-privilege permissions, encrypted connections, secure storage, account and device security, and reviews of the vendors we work with. Only people who need access to do their work have it, and everyone who handles personal information is expected to follow this policy.
+
+Two honest caveats. Email is not a secure channel, so please do not send us sensitive information such as passwords, identity documents, or payment details by email. And we will never send you an email asking you to click a link and enter personal information. If you receive a message that appears to come from us and asks for that, treat it as fraudulent and tell us.
+
+## 12. If there is a breach
+
+If a breach of our security safeguards involves personal information and it is reasonable to believe that the breach creates a real risk of significant harm, we report it to the Privacy Commissioner of Canada as soon as feasible and notify affected individuals directly. The notification explains what happened, what information was involved, what we have done, and what the person can do to reduce the risk of harm. We also keep a record of every breach of security safeguards under our control, whether or not it had to be reported.
+
+## 13. Your rights
+
+You have the right to:
+
+- **Know.** Ask what personal information we hold about you, how we use it, and to whom we have disclosed it.
+- **Access.** Request a copy of that information.
+- **Correct.** Ask us to correct information that is inaccurate or incomplete.
+- **Withdraw consent.** Ask us to stop collecting, using, or disclosing your information, subject to legal and contractual limits.
+- **Complain.** Raise a concern with us, and if you are not satisfied, with the Privacy Commissioner of Canada.
+
+To make a request, use the contact details in section 16. We will ask for enough information to confirm your identity, and we use that information only for that purpose. We respond within 30 days, or explain why we need more time. There is normally no cost. If a request is unusually large, we may charge a reasonable fee, and we will tell you before doing any work.
+
+In some circumstances we cannot give access, for example where it would reveal personal information about another person, where it would threaten someone's life or security, where it would reveal confidential commercial information, where it is protected by privilege, or where it was created in relation to a settlement or the investigation of a breach of law. If we refuse, we explain why and tell you how to challenge the decision.
+
+## 14. Children
+
+Our services are for businesses and our site is not directed at children. We do not knowingly collect personal information from anyone under 18. If you believe a child has given us personal information, contact us and we will delete it.
+
+## 15. Links to other sites
+
+Our site may link to websites we do not control. Their privacy practices are their own and this policy does not cover them. Read the privacy policy of any site you visit.
+
+## 16. How to contact us
+
+Hoardy, a brand of 11371096 Canada Inc.
+Privacy contact: contact@hoardy.ai
+Contact form: hoardy.ai/#contact
+Registered office: 220 Missinnihe Way, Suite 1411, Mississauga, Ontario L5H 0A9, Canada
+
+If you are not satisfied with how we have handled your concern, you may contact the Office of the Privacy Commissioner of Canada:
+
+Office of the Privacy Commissioner of Canada
+30 Victoria Street
+Gatineau, Quebec K1A 1H3
+Toll-free: 1-800-282-1376
+Telephone: 819-994-5444
+priv.gc.ca
+
+## 17. Changes to this policy
+
+We review this policy regularly and update it when our practices or the law change. The effective date at the top of this page tells you which version you are reading. If a change is significant, we will make that clear on our site.
+
+---
+
+# Terms of Service
+
+# Terms of Service
+
+**Hoardy, a brand of 11371096 Canada Inc.**
+
+Effective date: September 30, 2026
+Last updated: September 30, 2026
+
+## 1. These terms
+
+These Terms of Service ("Terms") govern your use of hoardy.ai (the "Site") and, where we have not signed a separate written agreement with you, the services we provide.
+
+The Site and the services are provided by 11371096 Canada Inc., operating as Hoardy ("Hoardy", "we", "us", "our"), a corporation registered in Canada with its registered office at 220 Missinnihe Way, Suite 1411, Mississauga, Ontario L5H 0A9.
+
+By using the Site, submitting an enquiry, or engaging us, you agree to these Terms. If you are agreeing on behalf of a company or another organization, you confirm that you have the authority to bind it. If you do not agree with these Terms, do not use the Site or our services.
+
+## 2. What we do
+
+We are a software development and quality assurance studio. Our work includes AI and agentic software development, web and application development, product and experience design, quality assurance and testing, immersive and VR work, and technical strategy.
+
+The scope of a specific engagement is described in a proposal, statement of work, or similar document ("SOW"). Where a signed SOW conflicts with these Terms, the SOW prevails for that engagement.
+
+## 3. Enquiries, proposals, and estimates
+
+Submitting an enquiry does not create a contract between us. We respond to enquiries on a best-efforts basis and we are not obliged to accept any engagement.
+
+Proposals and estimates are valid for 30 days unless stated otherwise. Estimates are good-faith projections based on the information available to us at the time. They are not fixed prices and they are not guarantees of an outcome. Nothing published on the Site is an offer capable of acceptance.
+
+## 4. Your responsibilities
+
+Good work depends on timely input from you. You agree to:
+
+- give us accurate information, and timely decisions, approvals, and feedback;
+- provide the access, materials, credentials, environments, and people we need;
+- make sure that anything you give us is yours to give, or that you have the rights needed for us to use it;
+- keep your own backups of anything you send us; and
+- name a person with authority to approve work on your side.
+
+Delays, changes, or incomplete input caused by you may affect the timeline and the cost of an engagement.
+
+## 5. Fees, invoices, and taxes
+
+- Fees are set out in the SOW, whether fixed-fee, time and materials, or retainer.
+- Unless the SOW says otherwise, invoices are due within 15 days of the invoice date.
+- Amounts are in Canadian dollars unless the SOW says otherwise, and are exclusive of applicable taxes. We add GST, HST, QST, or other applicable taxes where the law requires.
+- Pre-approved expenses are billed at cost with supporting receipts.
+- Overdue amounts carry interest at 1.5% per month, or the highest rate permitted by law, whichever is lower.
+- If an invoice is overdue, we may pause work and withhold deliverables until the account is brought current.
+- Deposits and payments for work already performed are non-refundable, except where these Terms or applicable law require otherwise.
+
+Nothing in these Terms removes a right that cannot be waived. If you are a consumer, Ontario's Consumer Protection Act, 2002 and other consumer protection laws may give you cancellation or other statutory rights, including a right to cancel certain agreements, and those rights apply regardless of these Terms.
+
+## 6. Changes to the work
+
+Changes are managed in writing. A change that affects scope, timeline, or cost is not effective until both sides agree to it in writing, and email is sufficient. Work that falls outside the agreed scope may be billed at our standard rates or handled through a change order.
+
+## 7. Third-party services and open source
+
+Our work often depends on third-party platforms, APIs, hosting, and open-source components. Those are governed by their own terms and licences and they are not under our control.
+
+Where third-party costs are passed through to you, you pay them. If a third-party service changes, degrades, or is discontinued, we are not responsible for the consequences, though we will work with you on a reasonable alternative. Open-source components are provided to you under their respective licences.
+
+## 8. AI-assisted work
+
+We use modern tooling, including AI-assisted development and testing tools, because it lets us build and verify faster.
+
+Where we do, a person reviews the work and remains accountable for it, and the same quality gates apply as on any other engagement: code review, testing, security checks, and performance budgets. We do not place your confidential information into public AI tools without your written approval.
+
+AI systems can generate output that is inaccurate, incomplete, or similar to material that already exists elsewhere. We do not promise that AI-assisted output will be unique or free of third-party claims, and we rely on our review and testing process to catch problems before delivery. If you would prefer that we work without AI tooling on your project, tell us in writing and we will agree how that affects scope, timeline, and cost.
+
+## 9. Intellectual property
+
+- **Your material stays yours.** You keep all rights in the content, data, brand assets, and other materials you give us. You grant us a licence to use them only to perform the work.
+- **Deliverables transfer on payment.** Once you have paid in full for an engagement, you own the deliverables we created for it, other than our pre-existing materials and third-party components.
+- **Our background materials.** We keep ownership of our pre-existing materials, frameworks, templates, libraries, methods, and know-how, including anything we have developed or refined across projects. Where any of these are embedded in a deliverable, we grant you a non-exclusive, worldwide, perpetual, royalty-free licence to use them as part of that deliverable. We may continue to use our general skills and know-how on other work.
+- **Portfolio.** Unless you tell us in writing not to, we may describe the engagement and show non-confidential screens or examples in our portfolio and marketing. We will not publish your confidential information.
+- **Third-party components.** Open-source and third-party components keep their own licences, and your use of them is governed by those licences.
+
+## 10. Confidentiality
+
+Each of us will keep the other's confidential information confidential and use it only for the engagement. This does not apply to information that is already public through no fault of the receiving party, that the receiving party already held without a duty of confidence, that it develops independently, or that it must disclose by law, in which case it will give notice where it lawfully can.
+
+These obligations continue for three years after an engagement ends, and continue indefinitely for trade secrets. Where we have signed a separate confidentiality agreement with you, that agreement governs to the extent of any conflict.
+
+## 11. Warranties and disclaimers
+
+We warrant that we will perform the services in a professional and workmanlike manner, consistent with industry standards for work of this kind.
+
+Except for that warranty, and to the fullest extent the law allows, the Site and the deliverables are provided "as is", and we disclaim all other warranties, whether express, implied, or statutory, including any implied warranty of merchantability, fitness for a particular purpose, or non-infringement. We do not warrant that the Site will be uninterrupted, secure, or error-free, or that a deliverable will satisfy requirements we did not agree to in writing. We are not responsible for third-party services, for changes you or anyone else makes to a deliverable, or for use of a deliverable outside its intended purpose.
+
+## 12. Limitation of liability
+
+To the fullest extent the law allows:
+
+- neither party is liable for indirect, incidental, special, punitive, or consequential damages, or for lost profits, revenue, data, goodwill, or business opportunity, even if that party was advised of the possibility;
+- our total aggregate liability arising out of or relating to an engagement, whether in contract, tort including negligence, or otherwise, is limited to the greater of the fees you paid us for that engagement in the twelve months before the event giving rise to the claim, and ten thousand Canadian dollars.
+
+Nothing in this section limits liability for fraud, wilful misconduct, gross negligence, breach of confidentiality, or any liability that cannot be limited or excluded by law, including rights that consumer protection legislation gives you.
+
+## 13. Indemnity
+
+You agree to indemnify and hold us harmless from claims, damages, and costs, including reasonable legal fees, arising from materials you provide to us, from your use of a deliverable in a manner we did not agree to, or from your breach of these Terms, including claims that your materials infringe the rights of someone else.
+
+Subject to section 12, we agree to indemnify you against a claim that a deliverable we created for you infringes a third party's Canadian intellectual property rights, provided that you have complied with these Terms and you notify us promptly so that we can respond.
+
+## 14. Suspension and termination
+
+- Either of us may end an engagement for convenience with 30 days' written notice.
+- Either of us may end an engagement immediately if the other commits a material breach that is not cured within 15 days of written notice, or becomes insolvent or unable to pay its debts.
+- When an engagement ends, you pay for work performed and costs committed up to the termination date, and we hand over the completed deliverables that have been paid for.
+- The provisions that by their nature should survive termination do survive, including payment obligations, confidentiality, intellectual property, warranty disclaimers, limitation of liability, indemnity, and governing law.
+
+## 15. Governing law and jurisdiction
+
+These Terms and any dispute arising out of or relating to them are governed by the laws of the Province of Ontario and the federal laws of Canada that apply in Ontario.
+
+You and we submit to the exclusive jurisdiction of the courts of the Province of Ontario. Nothing in this section prevents either of us from seeking urgent injunctive or equitable relief from a court of competent jurisdiction.
+
+## 16. General
+
+- **Entire agreement.** These Terms, together with any SOW and any signed agreement between us such as a confidentiality agreement, are the entire agreement between us on their subject matter and replace any earlier discussion or understanding.
+- **Assignment.** You may not assign these Terms without our written consent. We may assign them to an affiliate or as part of a merger, reorganization, or sale of assets.
+- **Severability.** If any provision is found unenforceable, it will be modified to the minimum extent needed and the rest of these Terms remain in force.
+- **No waiver.** If we do not enforce a provision on one occasion, that is not a waiver of it.
+- **Notices.** Notices to us are valid if sent to contact@hoardy.ai or to our registered office. Notices to you are valid if sent to the email address you provide to us.
+- **Force majeure.** Neither party is liable for a delay or failure caused by an event beyond its reasonable control.
+- **Independent contractor.** We are independent contractors. Nothing in these Terms creates a partnership, joint venture, agency, or employment relationship between us.
+
+## 17. Contact
+
+Hoardy, a brand of 11371096 Canada Inc.
+220 Missinnihe Way, Suite 1411
+Mississauga, Ontario L5H 0A9, Canada
+contact@hoardy.ai
+hoardy.ai/#contact

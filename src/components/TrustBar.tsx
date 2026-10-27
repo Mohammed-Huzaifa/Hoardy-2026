@@ -47,6 +47,8 @@ export default function TrustBar() {
               <img
                 src={client.src}
                 alt={client.name}
+                loading="lazy"
+                decoding="async"
                 className="h-10 w-auto max-w-[170px] object-contain md:h-12 md:max-w-[200px]"
               />
             </div>

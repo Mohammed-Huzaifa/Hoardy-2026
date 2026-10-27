@@ -1,0 +1,156 @@
+---
+title: "The Agentic Era: What We've Learned Building AI Agents in Canada"
+dek: "Agents are already handing work to other agents. Canada has just made agentic AI a national priority. Here is how we strategise, plan, and build agentic workflows that survive production, and what to ask before you hire a builder."
+date: "2026-09-30"
+tags: ["AI Agents", "Agentic Workflows", "Canada", "Engineering"]
+author: "Hoardy"
+draft: false
+---
+
+The first time one agent hands work to another, the novelty wears off quickly and something quieter takes its place. A request arrives at 2am. It is picked up, enriched, checked against policy, and routed. By morning, a person finds a decision waiting instead of a queue.
+
+That is the shift we build for. Not a chatbot that answers, and not a script that runs. A system that acts, checks its own work, and hands off to a human at the right moment.
+
+On June 4, 2026, Prime Minister Mark Carney launched **AI for All**, Canada's national artificial intelligence strategy, in Toronto. It is a $2.3-billion commitment built on six pillars, and it names the thing we do for a living: alongside modernised privacy law and sovereign compute, it commits to expanding Canada's AI safety capability in response to "the rapid expansion of AI capabilities and the growing adoption of **agentic AI**", and to ensuring every post-secondary student has access to *trusted AI agents*.
+
+Canada wrote agents into its national plan. This essay is about what it actually takes to build them.
+
+## What is an AI agent?
+
+An AI agent is software that pursues a goal instead of running a fixed script. It plans, calls tools, reads the results, and adapts. Always inside boundaries you set, with a human accountable for the outcome. A process becomes *agentic* when agents own parts of it end to end, including the decisions about what happens next.
+
+The difference between that and a chatbot is the difference between advice and work. A chatbot tells you how to reset a password. An agent resets it, verifies the account belongs to the right person, records what it did, and escalates the one case in fifty that does not fit the pattern.
+
+## Copilots, coworkers, and the layer above them
+
+It helps to separate three layers, because most disappointment in this market comes from buying one and expecting another.
+
+- **Assistants (copilots)** draft, summarise, and suggest. The human still does the work; the model does the typing.
+- **Agentic workflows (coworkers)** own a process end to end. The agent connects to the systems, takes the action, checks the result, and follows the escalation rules.
+- **Multi-agent systems** put specialised agents behind a single outcome: one plans, one retrieves, one acts, one reviews.
+
+Most organisations are still at the first layer, and most of the value sits at the second. The frontier is the third.
+
+## Agent-to-agent: the protocol layer just became real
+
+For years, "multi-agent" meant agents inside one framework, sharing one memory, wired together with custom code. Connecting an agent built on one platform to an agent built on another meant writing bespoke integration code for every new pairing. That is now solved at the standards level, and it happened quickly.
+
+The **Model Context Protocol (MCP)** standardised how an agent connects to tools and data. The **Agent2Agent (A2A) protocol** standardised how agents find and delegate to each other. A2A began at Google in April 2025, was donated to the Linux Foundation that June, and reached its stable v1.0 specification with multi-protocol support, signed agent cards for cryptographic identity, and enterprise-grade multi-tenancy.
+
+The adoption numbers at its one-year mark are the part worth sitting with: more than 150 supporting organisations, a core repository past 22,000 stars, SDKs in five production languages, and native support inside Azure AI Foundry, Copilot Studio, and AWS Bedrock AgentCore. In August 2026 it was accepted into the Agentic AI Foundation, alongside MCP, goose, and AGENTS.md.
+
+<PullQuote>MCP connects an agent to its tools. A2A connects an agent to other agents. Together they turn a pile of automation into something closer to a workforce.</PullQuote>
+
+What that means in practice: an agent can publish a structured card describing what it does and how to reach it. Another agent, built by a different team on a different platform, can read it, negotiate, and delegate, without a human writing the integration.
+
+The caution is equally real. Agent-to-agent coordination multiplies capability and multiplies failure modes. When three agents cooperate, a bad assumption can travel. Which is why the second half of this essay is about discipline rather than architecture.
+
+## What an agentic workflow looks like in production
+
+Here is a concrete one. A hiring pipeline we have built runs as seven connected agents: the role is published, applications are enriched and matched against the requirements, candidates are screened by voice, interviews are scheduled against real calendars, and a briefing lands with the hiring executive. Every result is written back into the system of record, so the process of record and the process that actually happened stay the same thing.
+
+The same shape repeats across functions:
+
+- **IT service desk.** Password resets, account unlocks, software requests, and ticket triage, all resolved directly, with sensitive cases escalated with full context attached.
+- **Finance and procurement.** Invoice approvals, purchase orders, expense reports, vendor onboarding, and approval routing.
+- **HR and people operations.** Onboarding and offboarding, policy questions, document validation, and scheduling.
+- **Higher education.** Admissions inquiries, academic policy questions, advising support, and student services that answer at 2am, because students do not only work at 10am.
+
+Two design decisions separate these from a demo. First, the agents live where the team already works: Teams, Slack, the tools already open in a browser tab. Not a new portal nobody opens. Second, every agent is defined by **what it may do, what requires approval, and when it escalates**, in writing, before it goes live. Permissions are respected. Actions are logged. Human handoffs are designed, not improvised.
+
+## Where agents pay back, and where they do not
+
+The honest version of the market, from the primary sources:
+
+- Gartner expects **40% of enterprise applications to include task-specific AI agents by the end of 2026**, up from under 5% in 2025, and 33% of enterprise software applications to include agentic AI by 2028.
+- McKinsey finds **62% of organisations experimenting with agents and 23% scaling them**, with no single business function past roughly 10% at scale.
+- Microsoft's 2026 Work Trend Index reports that active agents in its ecosystem grew **15x year over year**, rising to **18x in large enterprises**.
+- IDC projects agentic AI will account for **more than a quarter of worldwide IT spending by 2029**.
+
+Against that, the failure data:
+
+- Gartner also predicts **more than 40% of agentic AI projects will be cancelled by the end of 2027**, citing escalating costs, unclear business value, and inadequate risk controls. The same analysis estimates that only about 130 of the thousands of vendors marketing "agentic" AI are genuinely agentic. The rest is what Gartner calls *agent washing*.
+- MIT's Project NANDA found **95% of enterprise generative-AI pilots delivered no measurable P&L impact**, and that implementations led by external partners succeeded about twice as often as internal builds.
+
+Read those two lists together and the lesson is not that agents fail. It is that agents fail for boring, avoidable, human reasons: nobody named the workflow, nobody priced the exception path, nobody built the evaluation harness.
+
+## Why we start with the workflow, not the model
+
+Our method is deliberately unglamorous. It runs in four moves.
+
+**1. Strategise.** We find the workflow, not the technology. It has to be repetitive, rules-based, high-volume, and measurable. Then we write down the number that proves it worked: minutes to resolution, tickets auto-resolved, days to approval, cost per transaction. If we cannot name the metric, we do not start.
+
+**2. Plan.** We map the systems the work touches (CRM, ERP, HRIS, ITSM, the calendar, the inbox), and decide where the agents sit, where a human stays in the loop, and what a wrong answer costs. The exception path gets designed first, because that is where the cost and the risk live.
+
+**3. Build.** Agents, integrations, permissions, guardrails, escalation rules, audit trail. Most of the engineering is not the model. It is the data pipeline, the integration surface, and the definition of done.
+
+**4. Prove.** An evaluation harness before launch. Test cases that run on every change, so a regression can be told apart from ordinary variance. Observability into what the agent did and why. A rollback plan a human can execute at 9am without heroics.
+
+This is the part clients underestimate, and the part we care most about. Hoardy is a development and quality-assurance firm: we have shipped more than forty products, and QA has been in every sprint. Agentic systems need that discipline more than ordinary software does, not less.
+
+## Why Toronto, and why now
+
+Canada's claim on this field is not a marketing line. It is a lineage, and it belongs to the whole corridor around Toronto, from Mississauga and the wider GTA to Waterloo's labs and Montréal's research institutes.
+
+In 2012, Geoffrey Hinton and two students at the University of Toronto, Alex Krizhevsky and Ilya Sutskever, trained a neural network called AlexNet on two consumer GPUs and won an image-recognition competition by a margin that reorganised the field. The paper became one of the most cited in computer science, the source code is now preserved by the Computer History Museum, and Hinton shared the 2024 Nobel Prize in Physics for foundational work on neural networks. Nearly everything in this essay runs on the direction that work set.
+
+That lineage became infrastructure. The **Vector Institute** launched in Toronto in 2017 with $135 million and more than forty industry partners, and now supports a community of more than 950 researchers, 369-plus published papers, and a FastLane program that has worked with hundreds of Canadian companies. Its applied work sits squarely on this topic: an Agentic AI Bootcamp with manufacturers such as Linamar, and free open-source safety tooling such as UnBias-Plus, released in June 2026.
+
+It is now policy as well. Canada's strategy commits to sovereign compute and a world-leading public AI supercomputer by 2031, a $700-million Compute Access Fund, a $500-million Regional AI Initiative, a $500-million growth fund for high-potential AI firms, a certification program for trustworthy AI, and watermarking of AI-generated content. It targets lifting business AI adoption from 12% to 60% by 2034 and creating up to 250,000 jobs through AI adoption by 2031. Cohere, founded in Toronto in 2019, is one of very few frontier model companies outside the United States. In Montréal, Yoshua Bengio's LawZero is building oversight systems specifically for the agentic wave.
+
+The Canadian framing is worth more than patriotism. The strategy's three principles (trust, opportunity, sovereignty) are the three questions every serious agent deployment has to answer anyway. What may this system do. Who benefits. Who is accountable when it is wrong.
+
+## How to choose an agent builder in Canada
+
+Most disappointment in this market starts with the wrong first question. "What can you build?" invites a demo. These invite an answer:
+
+1. **Which single workflow will you change first, and what number proves it worked?**
+2. **What happens on the exception path:** who receives it, how quickly, with what context?
+3. **Show me the evaluation harness.** How do you tell a regression from ordinary variance?
+4. **Where does a human stay in the loop, and who owns the outcome** when the agent is wrong?
+5. **What is the fully loaded cost per run**, including retries, escalations, and model calls?
+6. **What is the rollback story**, and who can execute it?
+
+A builder who can answer those six questions in specifics is worth more than one with a longer list of frameworks.
+
+## Questions we get asked
+
+**What is agentic AI?**
+Agentic AI describes systems that pursue goals rather than execute fixed scripts: they plan, use tools, observe results, and adapt within boundaries. The distinguishing feature is not intelligence but autonomy with accountability.
+
+**What is the difference between an AI agent and a chatbot?**
+A chatbot produces text for a human to act on. An agent acts: it connects to systems, completes the task, verifies the outcome, and escalates what it cannot finish.
+
+**What is agent-to-agent (A2A)?**
+A2A is an open protocol, now governed by the Linux Foundation and the Agentic AI Foundation, that lets agents built on different platforms discover each other and delegate tasks. MCP connects agents to tools; A2A connects agents to agents.
+
+**How long does it take to deploy an AI agent?**
+A single well-scoped workflow can go live in weeks rather than quarters, because the first version does not need to be the whole process. Industry benchmarks put median payback on agent deployments at roughly five months, which is an argument for starting narrow and measuring early.
+
+**Do AI agents need human oversight?**
+Yes, by design. Mature deployments define what the agent may do alone, what requires approval, and what must be escalated. Oversight is not a brake on autonomy; it is what makes autonomy safe enough to use.
+
+**How much does it cost to build an AI agent?**
+It depends far more on integrations, data quality, and governance than on model choice. The useful question is not the build price but the fully loaded cost per run, including the exception path, against the cost of the process today. That is the number we scope against.
+
+## The next layer is agents talking to agents
+
+The first wave of AI asked whether a model could write. The second asked whether a system could act. The one arriving now asks whether systems can coordinate: a planner delegating to a specialist, a specialist reporting to a reviewer, a reviewer escalating to a person who never has to know how any of it worked.
+
+Canada has decided it wants to be a country that builds that, not one that only buys it. We are a Toronto development and QA firm, and we build agentic workflows for companies that would rather own the outcome than rent it.
+
+If you are working out where agents belong in your business, the most useful first conversation is not about frameworks. It is about the one process you would be relieved to stop doing by hand.
+
+[Start a project](https://hoardy.ai/#contact). We answer within a day.
+
+## Sources
+
+- Government of Canada, [Canada's National Artificial Intelligence Strategy: AI for All](https://ised-isde.canada.ca/site/ised/en/canadas-national-artificial-intelligence-strategy-ai-all) (June 4, 2026)
+- Prime Minister of Canada, [Prime Minister Carney launches AI for All](https://www.pm.gc.ca/en/news/news-releases/2026/06/04/prime-minister-carney-launches-ai-all-canadas-new-national-artificial) (June 4, 2026)
+- Linux Foundation, [A2A Protocol surpasses 150 organizations](https://www.linuxfoundation.org/press/a2a-protocol-surpasses-150-organizations-lands-in-major-cloud-platforms-and-sees-enterprise-production-use-in-first-year) (April 9, 2026)
+- A2A Protocol, [A new chapter for A2A: joining the Agentic AI Foundation](https://a2a-protocol.org/latest/blog/2026/08/27/a-new-chapter-for-a2a-joining-the-agentic-ai-foundation/) (August 27, 2026)
+- Gartner, [Over 40% of agentic AI projects will be canceled by end of 2027](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027) (June 25, 2025)
+- MIT Project NANDA, [The GenAI Divide: State of AI in Business 2025](https://cdn.prod.website-files.com/68c7c6fc5d08d3aa30556cf2/69142ec4ddc4626ac32d1515_v0.1_State_of_AI_in_Business_2025_Report%20%281%29.pdf) (July 2025)
+- Microsoft, [2026 Work Trend Index: Agents, human agency, and the opportunity for every organization](https://www.microsoft.com/en-us/worklab/work-trend-index/agents-human-agency-and-the-opportunity-for-every-organization)
+- University of Toronto, [AlexNet source code to be preserved by the Computer History Museum](https://www.utoronto.ca/news/neural-net-behind-geoffrey-hinton-s-nobel-prize-be-preserved-computer-history-museum) (March 2025)
+- Vector Institute, [Annual Report 2025-26](https://annual-report.vectorinstitute.ai/)

@@ -111,6 +111,7 @@ function Aurora({ reducedMotion }: { reducedMotion: boolean }) {
 
   useFrame((state) => {
     if (!matRef.current || reducedMotion) return
+    if (document.hidden) return
     matRef.current.uniforms.uTime.value = state.clock.elapsedTime
   })
 
@@ -158,6 +159,7 @@ function CameraRig({ reducedMotion }: { reducedMotion: boolean }) {
 
   useFrame((state) => {
     if (reducedMotion) return
+    if (document.hidden) return
     const t = state.clock.elapsedTime
     const gx = Math.sin(t * 0.14) * 0.4
     const gy = Math.cos(t * 0.1) * 0.22

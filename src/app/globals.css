@@ -294,3 +294,189 @@
     animation: none !important;
   }
 }
+
+/* Perf: skip paint/compositing of offscreen sections (heavy backdrop-blur + fixed
+   WebGL aurora underneath) — sections render as they near the viewport. */
+main > section,
+footer {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 900px;
+}
+
+/* Blog article typography — top-level on purpose (never inside @layer, see note
+   at top of file). Classes are emitted by marked from content/blog/*.md. */
+.blog-prose {
+  color: #2a3648;
+  font-size: 17px;
+  line-height: 1.85;
+}
+.blog-prose > *:first-child {
+  margin-top: 0;
+}
+.blog-prose p,
+.blog-prose ul,
+.blog-prose ol,
+.blog-prose blockquote,
+.blog-prose pre,
+.blog-prose table {
+  margin: 0 0 1.6em;
+}
+.blog-prose h2 {
+  font-size: 27px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #1b2b5e;
+  margin: 2em 0 0.7em;
+  line-height: 1.25;
+}
+.blog-prose h3 {
+  font-size: 21px;
+  font-weight: 600;
+  color: #1b2b5e;
+  margin: 1.8em 0 0.6em;
+  line-height: 1.3;
+}
+.blog-prose h4 {
+  font-size: 17px;
+  font-weight: 600;
+  color: #1b2b5e;
+  margin: 1.5em 0 0.5em;
+}
+.blog-prose a {
+  color: #4a82c4;
+  text-decoration: underline;
+  text-decoration-color: rgba(74, 130, 196, 0.4);
+  text-underline-offset: 3px;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+.blog-prose a:hover {
+  color: #1b2b5e;
+  text-decoration-color: #1b2b5e;
+}
+.blog-prose strong {
+  color: #1b2b5e;
+  font-weight: 600;
+}
+.blog-prose ul,
+.blog-prose ol {
+  padding-left: 1.4em;
+}
+.blog-prose ul {
+  list-style: disc;
+}
+.blog-prose ol {
+  list-style: decimal;
+}
+.blog-prose li {
+  margin-bottom: 0.5em;
+  padding-left: 0.3em;
+}
+.blog-prose li::marker {
+  color: #4a82c4;
+}
+.blog-prose blockquote {
+  border-left: 3px solid #7bb8e8;
+  background: rgba(240, 245, 255, 0.7);
+  padding: 0.9em 1.4em;
+  border-radius: 0 14px 14px 0;
+  color: #1b2b5e;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.blog-prose blockquote p {
+  margin: 0;
+}
+.blog-prose code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.82em;
+  background: #e7eef9;
+  color: #1b2b5e;
+  border: 1px solid rgba(200, 214, 229, 0.8);
+  border-radius: 6px;
+  padding: 0.15em 0.45em;
+}
+.blog-prose pre {
+  background: #14214a;
+  border-radius: 16px;
+  padding: 1.2em 1.4em;
+  overflow-x: auto;
+  line-height: 1.6;
+}
+.blog-prose pre code {
+  background: transparent;
+  border: 0;
+  color: #d5dff0;
+  padding: 0;
+  font-size: 14px;
+}
+.blog-prose hr {
+  border: 0;
+  border-top: 1px solid rgba(200, 214, 229, 0.8);
+  margin: 2.6em auto;
+  width: 40%;
+}
+.blog-prose img {
+  border-radius: 16px;
+  border: 1px solid rgba(200, 214, 229, 0.6);
+  margin: 0.5em 0 1.8em;
+  max-width: 100%;
+  height: auto;
+}
+.blog-prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+}
+.blog-prose th,
+.blog-prose td {
+  border: 1px solid rgba(200, 214, 229, 0.8);
+  padding: 0.6em 0.9em;
+  text-align: left;
+}
+.blog-prose th {
+  background: #f0f5ff;
+  color: #1b2b5e;
+  font-weight: 600;
+}
+
+/* Post figures (rendered from the founder's <Figure /> MDX component) */
+.blog-prose figure.blog-figure {
+  margin: 2.2em 0;
+}
+.blog-prose figure.blog-figure img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(200, 214, 229, 0.6);
+  margin: 0;
+  display: block;
+}
+.blog-prose figure.blog-figure figcaption {
+  margin-top: 0.9em;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #5a6b82;
+  text-align: center;
+  padding: 0 1em;
+}
+
+/* Pull quote (<PullQuote> MDX component) */
+.blog-prose blockquote.blog-pullquote {
+  border-left: 0;
+  background: transparent;
+  border-top: 2px solid #7bb8e8;
+  border-bottom: 2px solid #7bb8e8;
+  border-radius: 0;
+  padding: 1.6em 0.5em;
+  margin: 2.4em 0;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: #1b2b5e;
+  letter-spacing: -0.01em;
+}
+.blog-prose blockquote.blog-pullquote p {
+  margin: 0;
+}

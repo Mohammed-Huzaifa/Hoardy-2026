@@ -1,0 +1,35 @@
+# hoardy.ai
+
+> Hoardy is a Toronto-based boutique technology agency that builds AI agents and assistants, web and app products, product design, QA and maintenance, VR and immersive experiences, and the technical strategy behind them. We work with brands and founders across Toronto, Mississauga, the GTA and Canada, and with clients worldwide. Legal entity: 11371096 Canada Inc. Contact: maaz@hoardy.ai.
+
+## About
+
+- [Home](https://hoardy.ai/): what Hoardy does, who it works with, the six service lines, and the delivery process.
+- [Services](https://hoardy.ai/services.md): every service line with scope, tags and who it is for, in markdown.
+- [Contact](https://hoardy.ai/#contact): project enquiry form. We answer within a day.
+
+## Articles
+
+- [The Agentic Era: What We've Learned Building AI Agents in Canada](https://hoardy.ai/blog/the-agentic-era-building-ai-agents-in-canada/): Agents are already handing work to other agents. Canada has just made agentic AI a national priority. Here is how we strategise, plan, and build agentic workflows that survive production, and what to ask before you hire a builder. (2026-09-30)
+- [The Bar for Writing Software Just Fell](https://hoardy.ai/blog/the-bar-for-writing-software-just-fell/): Vibe coding makes an idea into a product in an afternoon. Agentic QA makes the machine check its own work. The ceiling moved. The floor did not, and that is where the builders who last are standing. (2026-09-09)
+
+## Legal
+
+- [Privacy Policy](https://hoardy.ai/privacy/): privacy policy for hoardy.ai, operated by 11371096 Canada Inc.
+- [Terms of Service](https://hoardy.ai/terms/): terms of service for hoardy.ai, operated by 11371096 Canada Inc.
+
+## Company facts
+
+- Name: Hoardy (hoardy.ai)
+- Legal name: 11371096 Canada Inc.
+- Location: Toronto, Ontario, Canada. Serving Mississauga, the Greater Toronto Area, Canada and remote clients worldwide.
+- Email: maaz@hoardy.ai
+- LinkedIn: https://www.linkedin.com/company/hoardy/
+- X: https://x.com/hoardyAI
+- Services: AI Agents & Assistants, Web & App Development, Product Design (UI/UX), QA & Maintenance, VR & Immersive Tech, Technical Strategy.
+
+## Optional
+
+- [llms-full.txt](https://hoardy.ai/llms-full.txt): the full text of every published page in one file.
+- [Sitemap](https://hoardy.ai/sitemap.xml)
+- [RSS](https://hoardy.ai/blog/rss.xml)

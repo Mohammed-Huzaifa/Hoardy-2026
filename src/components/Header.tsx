@@ -1,12 +1,13 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import { usePathname } from 'next/navigation'
 
 const navLinks = [
   { label: 'Services', href: '#services', index: '01' },
   { label: 'Work', href: '#work', index: '02' },
   { label: 'Process', href: '#process', index: '03' },
   { label: 'About', href: '#about', index: '04' },
-  { label: 'Contact', href: '#contact', index: '05' },
+  { label: 'Blog', href: '/blog', index: '05' },
 ]
 
 export default function Header() {
@@ -14,6 +15,10 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const ctaRef = useRef<HTMLAnchorElement>(null)
   const reducedRef = useRef(false)
+  const pathname = usePathname()
+
+  // Section anchors only exist on the homepage — prefix them on other routes.
+  const homeHref = (href: string) => (pathname === '/' || href.startsWith('/blog') ? href : `/${href}`)
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -50,7 +55,7 @@ export default function Header() {
       >
         <div className="flex items-center justify-between h-14 lg:h-[64px] px-4 sm:px-6">
           {/* Logo */}
-          <a href="#top" className="group flex items-center flex-shrink-0" aria-label="hoardyAI home">
+          <a href={homeHref('#top')} className="group flex items-center flex-shrink-0" aria-label="hoardyAI home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/hoardy-logo.png"
@@ -66,7 +71,7 @@ export default function Header() {
             {navLinks.map((link) => (
               <a
                 key={link.href}
-                href={link.href}
+                href={homeHref(link.href)}
                 className="group relative flex items-center gap-2 px-4 py-2 rounded-full hover:bg-[#1B2B5E]/[0.06] transition-colors duration-300 overflow-hidden"
               >
                 <span className="font-mono text-[10px] tracking-widest text-[#4A82C4] transition-colors duration-300">
@@ -88,7 +93,7 @@ export default function Header() {
           {/* Desktop CTA — magnetic */}
           <a
             ref={ctaRef}
-            href="#contact"
+            href={homeHref('#contact')}
             onMouseMove={handleCtaMove}
             onMouseLeave={handleCtaLeave}
             className="hidden lg:inline-flex items-center gap-1.5 bg-[#1B2B5E] text-[#EEF2FF] px-6 py-2.5 rounded-full text-[14px] font-semibold hover:bg-[#243A6E] transition-colors duration-300 will-change-transform"
@@ -135,7 +140,7 @@ export default function Header() {
           {navLinks.map((link, i) => (
             <a
               key={link.href}
-              href={link.href}
+              href={homeHref(link.href)}
               className="text-[#1A2332] text-[18px] font-medium py-3.5 border-b border-[#C8D6E5]/50 last:border-b-0 flex items-center gap-4"
               style={{
                 opacity: mobileOpen ? 1 : 0,
@@ -152,7 +157,7 @@ export default function Header() {
           ))}
         </nav>
         <a
-          href="#contact"
+          href={homeHref('#contact')}
           className="mt-6 inline-flex items-center justify-center gap-2 bg-[#1B2B5E] text-[#EEF2FF] px-6 py-4 rounded-full text-[15px] font-semibold transition-all duration-300 w-full"
           style={{
             opacity: mobileOpen ? 1 : 0,
